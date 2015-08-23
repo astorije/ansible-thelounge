@@ -22,8 +22,17 @@
     state: present
   sudo: yes
 
+- name: Ensure esprima package (for JS syntax checking) is installed
+  npm:
+    name: esprima
+    global: yes
+    production: yes
+    state: present
+  sudo: yes
+
 - name: Ensure Shout is configured
   copy:
     src: config.js
     dest: /root/.shout/config.js
+    validate: 'esvalidate %s'
   sudo: yes
