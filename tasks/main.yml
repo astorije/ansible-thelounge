@@ -21,3 +21,9 @@
     version: 0.51.1
     state: present
   sudo: yes
+
+- name: Ensure Shout is configured
+  copy:
+    src: config.js
+    dest: /root/.shout/config.js
+  sudo: yes
