@@ -12,3 +12,12 @@
     pkg: nodejs
     state: present
   sudo: yes
+
+- name: Ensure Shout package is installed
+  npm:
+    name: shout
+    global: yes
+    production: yes
+    version: 0.51.1
+    state: present
+  sudo: yes
