@@ -40,6 +40,12 @@
     validate: 'esvalidate %s'
   sudo: yes
 
+- name: Ensure user configuration directory is present
+  file:
+    path: /root/.shout/users
+    state: directory
+  sudo: yes
+
 # TODO Support change of password
 - name: Ensure user configuration files are present
   template:
