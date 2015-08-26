@@ -22,12 +22,15 @@
     state: present
   sudo: yes
 
-- name: Ensure esprima package (for JS syntax checking) is installed
+- name: Ensure JS and JSON syntax checking packages are installed
   npm:
-    name: esprima
+    name: "{{ item }}"
     global: yes
     production: yes
     state: present
+  with_items:
+    - esprima
+    - jsonlint
   sudo: yes
 
 - name: Ensure Shout is configured
@@ -43,5 +46,6 @@
     src: user.json.j2
     dest: /root/.shout/users/{{ item.user }}.json
     force: no # Do not overwrite existing users to not erase networks
+    validate: 'jsonlint -q %s'
   with_items: shout_users
   sudo: yes
