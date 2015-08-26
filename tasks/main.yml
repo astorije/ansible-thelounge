@@ -36,3 +36,12 @@
     dest: /root/.shout/config.js
     validate: 'esvalidate %s'
   sudo: yes
+
+# TODO Support change of password
+- name: Ensure user configuration files are present
+  template:
+    src: user.json.j2
+    dest: /root/.shout/users/{{ item.user }}.json
+    force: no # Do not overwrite existing users to not erase networks
+  with_items: shout_users
+  sudo: yes
