@@ -51,7 +51,7 @@ module.exports = {
 	// @type     boolean
 	// @default  true
 	//
-	autoload: true
+	autoload: true,
 
 	//
 	// Prefetch URLs
