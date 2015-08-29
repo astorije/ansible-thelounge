@@ -1,0 +1,7 @@
+---
+
+- name: Restart supervisord program
+  supervisorctl:
+    name: shout
+    state: restarted
+  sudo: yes

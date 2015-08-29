@@ -55,3 +55,17 @@
     validate: 'jsonlint -q %s'
   with_items: shout_users
   sudo: yes
+
+- name: Ensure program configuration for supervisord is installed
+  copy:
+    src: shout_supervisord.conf
+    dest: /etc/supervisor/conf.d/shout.conf
+  sudo: yes
+  notify: Restart supervisord program
+
+- name: Ensure shout supervisord program is present
+  supervisorctl:
+    name: shout
+    state: present
+  sudo: yes
+  notify: Restart supervisord program
