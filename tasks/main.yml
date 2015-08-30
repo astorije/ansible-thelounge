@@ -54,7 +54,6 @@
     state: directory
   sudo: yes
 
-# TODO Support change of password
 - name: Ensure user configuration files are present
   template:
     src: user.json.j2

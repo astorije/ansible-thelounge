@@ -39,19 +39,3 @@ npm install bcryptjs
 ## Example playbook
 
 TODO
-
-## Todolist
-
-- Add example playbook(s)
-- Validate Supervisor program syntax (with link to validation recipes)
-- Allow to change themes
-- Switch to a non-root user
-- Allow passwords to be changed
-- Install Supervisor
-- Instructions for nginx alias/server
-- Instructions to open port 9000/tcp on ufw
-- Add testing through Travis CI with following steps:
-  - Check syntax
-  - Check run with no errors
-  - Check idempotence (run twice with no changed)
-  - Check Shout is started as expected
