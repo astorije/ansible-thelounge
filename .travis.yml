@@ -1,5 +1,7 @@
 language: python
 install: pip install ansible
 script:
-  # Check the role/playbook's syntax
+  # Check the role syntax
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
+  # Check that the role can run with no errors/failures
+  - ansible-playbook -i tests/inventory tests/test.yml --connection=local
