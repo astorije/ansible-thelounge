@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/astorije/ansible-role-shout.svg?branch=master)](https://travis-ci.org/astorije/ansible-role-shout)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 # ansible-role-shout
