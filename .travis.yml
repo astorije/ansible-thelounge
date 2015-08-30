@@ -5,3 +5,4 @@ script:
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
   # Check that the role can run with no errors/failures
   - ansible-playbook -i tests/inventory tests/test.yml --connection=local
+sudo: required
