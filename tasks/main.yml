@@ -71,9 +71,12 @@
   sudo: yes
   notify: Restart supervisord program
 
-- name: Ensure shout supervisord program is present
+- name: Ensure shout supervisord program is present and started
   supervisorctl:
     name: shout
-    state: present
+    state: "{{ item }}"
+  with_items:
+    - present
+    - started
   sudo: yes
   notify: Restart supervisord program
