@@ -21,6 +21,7 @@
     version: 0.51.1
     state: present
   sudo: yes
+  notify: Restart supervisord program
 
 - name: Ensure JS and JSON syntax checking packages are installed
   npm:
@@ -39,6 +40,7 @@
     dest: /root/.shout/config.js
     validate: 'esvalidate %s'
   sudo: yes
+  notify: Restart supervisord program
 
 - name: Ensure user configuration directory is present
   file:
@@ -55,6 +57,7 @@
     validate: 'jsonlint -q %s'
   with_items: shout_users
   sudo: yes
+  notify: Restart supervisord program
 
 - name: Ensure program configuration for supervisord is installed
   copy:
