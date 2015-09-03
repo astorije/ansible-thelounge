@@ -22,8 +22,8 @@ script:
   # no changed/failed tasks
   - >
     ansible-playbook --inventory='localhost,' tests/test.yml --connection=local
+    | tee /dev/stderr
     | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
-
+    && (printf '\n*** Idempotence test: ok ***\n' && exit 0)
+    || (printf "\n*** Idempotence test: failed ***\n" && exit 1)
 sudo: required
