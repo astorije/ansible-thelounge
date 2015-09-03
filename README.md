@@ -21,8 +21,8 @@ Users are defined by a list of the following format:
 
 ```yaml
 shout_users:
-  - user: jeremie
-    hashed_password: $2a$04$wNuWT4t3YmzkVTvBT6OFYepxHqg5c.GeFHCwtq1lu3FAT5/WhURHe
+  - user: WiZ
+    hashed_password: $2a$04$g8xA7UYVGXwtMp1fJIyINerlXjzieA/lva9O3rUWV2KEpLTjhdVD6 # "password"
   - ...
 ```
 
