@@ -1,6 +1,17 @@
 language: python
+env:
+  - ANSIBLE_VERSION="1.0.*"
+  - ANSIBLE_VERSION="1.1.*"
+  - ANSIBLE_VERSION="1.2.*"
+  - ANSIBLE_VERSION="1.3.*"
+  - ANSIBLE_VERSION="1.4.*"
+  - ANSIBLE_VERSION="1.5.*"
+  - ANSIBLE_VERSION="1.6.*"
+  - ANSIBLE_VERSION="1.7.*"
+  - ANSIBLE_VERSION="1.8.*"
+  - ANSIBLE_VERSION="1.9.*"
 install:
-  - pip install ansible
+  - pip install ansible==$ANSIBLE_VERSION
   - sudo apt-get install supervisor
 script:
   # Check the role syntax
