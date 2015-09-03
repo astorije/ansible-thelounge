@@ -4,7 +4,7 @@ install:
   - sudo apt-get install supervisor
 script:
   # Check the role syntax
-  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
+  - ansible-playbook --inventory='localhost,' tests/test.yml --syntax-check
   # Check that the role can run with no errors/failures
-  - ansible-playbook -i tests/inventory tests/test.yml
+  - ansible-playbook --inventory='localhost,' tests/test.yml --connection=local
 sudo: required
