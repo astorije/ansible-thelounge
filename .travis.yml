@@ -7,4 +7,12 @@ script:
   - ansible-playbook --inventory='localhost,' tests/test.yml --syntax-check
   # Check that the role can run with no errors/failures
   - ansible-playbook --inventory='localhost,' tests/test.yml --connection=local
+  # Check idempotence of the role by running it twice and making sure there are
+  # no changed/failed tasks
+  - >
+    ansible-playbook --inventory='localhost,' tests/test.yml --connection=local
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+
 sudo: required
