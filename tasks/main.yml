@@ -34,9 +34,9 @@
     - jsonlint
   sudo: yes
 
-- name: Ensure user configuration directory is present
+- name: Ensure Shout configuration directory is present
   file:
-    path: /root/.shout/users
+    path: /root/.shout
     state: directory
   sudo: yes
 
