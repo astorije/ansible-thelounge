@@ -47,6 +47,9 @@ npm install bcryptjs
 
 (Note that the `bcrypt` command is prefixed with a whitespace to [not be saved in your `bash` history](http://askubuntu.com/a/15929/166928), if configured accordingly).
 
+**Warning:** The playbook will fail if you do not specify at least one user,
+which is how Shout behaves itself.
+
 **Warning:** At the moment, user configuration files are only created if they do not exist, so changing passwords does not get reflected when provisioning.
 
 ## Example playbook
