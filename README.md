@@ -90,6 +90,12 @@ with the following test credentials:
   - Username: **WiZ**
   - Password: **password**
 
+You can also run the tests against the VM with:
+
+```bash
+bash tests/tests.sh
+```
+
 Lastly, once you are done with changes, you can run one of the following:
 
 ```bash

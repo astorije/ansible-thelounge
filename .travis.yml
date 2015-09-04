@@ -25,4 +25,5 @@ script:
     | grep -q 'changed=0.*failed=0'
     && (printf '\n*** Idempotence test: ok ***\n' && exit 0)
     || (printf "\n*** Idempotence test: failed ***\n" && exit 1)
+  - bash tests/tests.sh
 sudo: required
