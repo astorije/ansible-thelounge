@@ -54,4 +54,5 @@ which is how Shout behaves itself.
 
 ## Example playbook
 
-TODO
+Go to the [test playbook](tests/test.yml) to see an example playbook using this
+role.
