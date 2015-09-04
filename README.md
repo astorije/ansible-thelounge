@@ -85,6 +85,11 @@ vagrant up # Unnecessary if the VM is already running
 vagrant provision
 ```
 
+You should then be able to access Shout at <http://localhost:9000/>, and connect
+with the following test credentials:
+  - Username: **WiZ**
+  - Password: **password**
+
 Lastly, once you are done with changes, you can run one of the following:
 
 ```bash
