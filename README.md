@@ -56,3 +56,47 @@ which is how Shout behaves itself.
 
 Go to the [test playbook](tests/test.yml) to see an example playbook using this
 role.
+
+## Development environment
+
+Install [Vagrant](https://www.vagrantup.com/) and
+[VirtualBox](https://www.virtualbox.org/) using your favorite package manager
+and run:
+
+```bash
+vagrant up
+```
+
+This will spin up a minimal virtual machine and provision it with a test
+playbook using that role.
+
+If that step succeeds, syntax of the role is correct and all tasks are
+successful on a bare machine. It does not test the specifics of the role
+however, that you need to check yourself by connecting to the VM:
+
+```bash
+vagrant ssh
+```
+
+To provision the virtual machine again, run the following:
+
+```bash
+vagrant up # Unnecessary if the VM is already running
+vagrant provision
+```
+
+Lastly, once you are done with changes, you can run one of the following:
+
+```bash
+vagrant halt -f # Shuts down the VM for later re-use
+vagrant destroy -f # Destroys the VM entirely
+```
+
+This role is
+[backed by Travis CI](https://travis-ci.org/astorije/ansible-role-shout).
+It uses the same test playbook to ensure that, for every push:
+
+- Syntax is correct
+- The role and playbook run fine
+- The role is idempotent (running it twice in a row results in un-changed states
+  only)
