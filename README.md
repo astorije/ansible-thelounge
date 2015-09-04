@@ -15,6 +15,16 @@ What this role does:
 
 Note that this playbook will also install [esprima](https://www.npmjs.com/package/esprima) and [jsonlint](https://www.npmjs.com/package/jsonlint) npm packages to check syntax of configuration files.
 
+## Requirements
+
+This role should be compatible with Ansible 1.2 or higher.
+
+It was written for Debian and Ubuntu distributions.
+
+At the moment, it requires that [Supervisor](http://supervisord.org/) is
+installed on your managed machine (see
+[this issue](https://github.com/astorije/ansible-role-shout/issues/6)).
+
 ## Role variables
 
 ### `shout_users`
