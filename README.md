@@ -111,7 +111,7 @@ with the following test credentials:
 You can also run the tests against the VM with:
 
 ```bash
-bash tests/tests.sh
+./tests/tests.sh
 ```
 
 Lastly, once you are done with changes, you can run one of the following:

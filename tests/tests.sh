@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 url="http://localhost:9000/"
 http_code=`curl -sw "%{http_code}\\n" -o /dev/null ${url}`
