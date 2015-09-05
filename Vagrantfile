@@ -7,12 +7,6 @@ Vagrant.configure(2) do |config|
     vb.memory = "256"
   end
 
-  # See https://github.com/astorije/ansible-role-shout/issues/6
-  config.vm.provision "shell", inline: <<-EOF
-    sudo apt-get update
-    sudo apt-get install -y supervisor
-  EOF
-
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "tests/test.yml"
   end

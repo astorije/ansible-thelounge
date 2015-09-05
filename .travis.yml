@@ -11,7 +11,6 @@ env:
 install:
   - if test "$SYMLINK" == "true" ; then ln -s . ansible-role-shout ; fi
   - pip install ansible==$ANSIBLE_VERSION
-  - sudo apt-get install supervisor
 script:
   # Check the role syntax
   - ansible-playbook --inventory='localhost,' tests/test.yml --syntax-check
