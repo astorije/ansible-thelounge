@@ -29,7 +29,15 @@ It was written for Debian and Ubuntu distributions.
 
 ### `shout_users`
 
-Users are defined by a list of the following format:
+Lists all users allowed to access Shout using their credentials.
+
+**Warning:** The playbook will fail if you do not specify at least one user,
+which is how Shout behaves itself.
+
+**Warning:** At the moment, user configuration files are only created if they do
+not exist, so changing passwords does not get reflected when provisioning.
+
+#### Example
 
 ```yaml
 shout_users:
@@ -51,17 +59,11 @@ npm install bcryptjs
 [not be saved in your `bash` history](http://askubuntu.com/a/15929/166928),
 if configured accordingly).
 
-**Warning:** The playbook will fail if you do not specify at least one user,
-which is how Shout behaves itself.
-
-**Warning:** At the moment, user configuration files are only created if they do
-not exist, so changing passwords does not get reflected when provisioning.
-
 ### `shout_theme`
 
 Sets the visual style to apply to Shout, among those offered with the software.
 
-#### Example:
+#### Example
 
 ```yaml
 # Options are: crypto, example (default), morning, zenburn
