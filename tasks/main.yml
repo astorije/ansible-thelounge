@@ -47,7 +47,7 @@
   sudo: yes
 
 - name: Ensure Shout is configured
-  copy:
+  template:
     src: config.js
     dest: /root/.shout/config.js
     validate: 'esvalidate %s'
