@@ -29,6 +29,15 @@
   sudo: yes
   notify: Restart supervisord program
 
+- name: Ensure user shout is present
+  user:
+    name: shout
+    createhome: no
+    comment: Shout IRC
+    system: yes
+    state: present
+  sudo: yes
+
 - name: Ensure JS and JSON syntax checking packages are installed
   npm:
     name: "{{ item }}"
@@ -42,28 +51,31 @@
 
 - name: Ensure Shout configuration directory is present
   file:
-    path: /root/.shout
+    path: /etc/shout
     state: directory
   sudo: yes
 
 - name: Ensure Shout is configured
   template:
     src: config.js
-    dest: /root/.shout/config.js
+    dest: /etc/shout/config.js
     validate: 'esvalidate %s'
   sudo: yes
   notify: Restart supervisord program
 
 - name: Ensure user configuration directory is present
   file:
-    path: /root/.shout/users
+    path: /etc/shout/users
     state: directory
   sudo: yes
 
 - name: Ensure user configuration files are present
   template:
     src: user.json.j2
-    dest: /root/.shout/users/{{ item.user }}.json
+    dest: /etc/shout/users/{{ item.user }}.json
+    owner: shout
+    group: shout
+    mode: "0440"
     force: no # Do not overwrite existing users to not erase networks
     validate: 'jsonlint -q %s'
   with_items: shout_users
