@@ -53,7 +53,7 @@ npm package, run the following commands:
 
 ```bash
 npm install bcryptjs
- node node_modules/bcryptjs/bin/bcrypt myPassword
+ node node_modules/bcryptjs/bin/bcrypt "my password"
 ```
 
 (Note that the `bcrypt` command is prefixed with a whitespace to
