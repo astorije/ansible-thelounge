@@ -3,7 +3,8 @@
 
 # ansible-role-shout
 
-Ansible role to install Shout, a self-hosted web IRC client (http://shout-irc.com/).
+Ansible role to install [Shout](http://shout-irc.com/), a self-hosted web IRC
+client.
 
 What this role does:
 
@@ -13,7 +14,10 @@ What this role does:
 - Configures users as defined in your playbook variables, each with logging support
 - Starts Shout server as a [Supervisor](http://supervisord.org/) program
 
-Note that this playbook will also install [esprima](https://www.npmjs.com/package/esprima) and [jsonlint](https://www.npmjs.com/package/jsonlint) npm packages to check syntax of configuration files.
+Note that this playbook will also install
+[esprima](https://www.npmjs.com/package/esprima) and
+[jsonlint](https://www.npmjs.com/package/jsonlint) npm packages to check syntax
+of configuration files.
 
 ## Requirements
 
@@ -34,26 +38,31 @@ shout_users:
   - ...
 ```
 
-Passwords are hashed using [`bcrypt`](https://en.wikipedia.org/wiki/Bcrypt). To generate a password using the [bcryptjs](https://www.npmjs.com/package/bcryptjs) npm package, run the following commands:
+Passwords are hashed using [`bcrypt`](https://en.wikipedia.org/wiki/Bcrypt). To
+generate a password using the [bcryptjs](https://www.npmjs.com/package/bcryptjs)
+npm package, run the following commands:
 
 ```bash
 npm install bcryptjs
  node node_modules/bcryptjs/bin/bcrypt myPassword
 ```
 
-(Note that the `bcrypt` command is prefixed with a whitespace to [not be saved in your `bash` history](http://askubuntu.com/a/15929/166928), if configured accordingly).
+(Note that the `bcrypt` command is prefixed with a whitespace to
+[not be saved in your `bash` history](http://askubuntu.com/a/15929/166928),
+if configured accordingly).
 
 **Warning:** The playbook will fail if you do not specify at least one user,
 which is how Shout behaves itself.
 
-**Warning:** At the moment, user configuration files are only created if they do not exist, so changing passwords does not get reflected when provisioning.
+**Warning:** At the moment, user configuration files are only created if they do
+not exist, so changing passwords does not get reflected when provisioning.
 
 ## Example playbook
 
 Go to the [test playbook](tests/test.yml) to see an example playbook using this
 role.
 
-## Development environment
+## Development environment
 
 Install [Vagrant](https://www.vagrantup.com/) and
 [VirtualBox](https://www.virtualbox.org/) using your favorite package manager
