@@ -57,6 +57,17 @@ which is how Shout behaves itself.
 **Warning:** At the moment, user configuration files are only created if they do
 not exist, so changing passwords does not get reflected when provisioning.
 
+### `shout_theme`
+
+Sets the visual style to apply to Shout, among those offered with the software.
+
+#### Example:
+
+```yaml
+# Options are: crypto, example (default), morning, zenburn
+shout_theme: example
+```
+
 ## Example playbook
 
 Go to the [test playbook](tests/test.yml) to see an example playbook using this

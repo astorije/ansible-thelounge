@@ -40,7 +40,7 @@ module.exports = {
 	// @type     string
 	// @default  "themes/example.css"
 	//
-	theme: "themes/example.css",
+	theme: "themes/{{ shout_theme }}.css",
 
 	//
 	// Autoload users
