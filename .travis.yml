@@ -6,10 +6,9 @@ env:
   - ANSIBLE_VERSION="1.6.*"
   - ANSIBLE_VERSION="1.5.*"
   - ANSIBLE_VERSION="1.4.*"
-  - ANSIBLE_VERSION="1.3.*" SYMLINK="true"
-  - ANSIBLE_VERSION="1.2.*" SYMLINK="true"
+  - ANSIBLE_VERSION="1.3.*"
+  - ANSIBLE_VERSION="1.2.*"
 install:
-  - if test "$SYMLINK" == "true" ; then ln -s . ansible-role-shout ; fi
   - pip install ansible==$ANSIBLE_VERSION
 script:
   # Check the role syntax
