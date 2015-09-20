@@ -10,7 +10,7 @@ What this role does:
 
 - Installs [Supervisor](http://supervisord.org/) to run Shout in the background
 - Installs [NodeSource Node.js 0.12](https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories)
-- Installs [Shout 0.51.1](https://github.com/erming/shout/blob/master/CHANGELOG.md#0511--2015-04-29)
+- Installs [Shout 0.51.2](https://github.com/erming/shout/blob/master/CHANGELOG.md)
 - Creates a system user to own the Shout process
 - Configures Shout [as a private server](http://shout-irc.com/docs/server/configuration.html#public) to enable user login
 - Configures users as defined in your playbook variables, each with logging support
