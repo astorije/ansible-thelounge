@@ -24,7 +24,7 @@
     name: shout
     global: yes
     production: yes
-    version: 0.51.2
+    version: 0.52.0
     state: present
   sudo: yes
   notify: Restart supervisord program
