@@ -13,7 +13,7 @@ module.exports = {
 	},
 	defaults: {
 		name: "Freenode",
-		host: "irc.freenode.org",
+		host: "chat.freenode.net",
 		port: 6697,
 		password: "",
 		tls: true,
