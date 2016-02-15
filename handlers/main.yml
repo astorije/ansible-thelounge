@@ -2,6 +2,6 @@
 
 - name: Restart supervisord program
   supervisorctl:
-    name: shout
+    name: lounge
     state: restarted
   sudo: yes

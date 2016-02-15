@@ -1,20 +1,20 @@
-[![Build Status](https://travis-ci.org/astorije/ansible-role-shout.svg?branch=master)](https://travis-ci.org/astorije/ansible-role-shout)
+[![Build Status](https://travis-ci.org/astorije/ansible-lounge.svg?branch=master)](https://travis-ci.org/astorije/ansible-lounge)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-# ansible-role-shout
+# Ansible role for The Lounge
 
-Ansible role to install [Shout](http://shout-irc.com/), a self-hosted web IRC
+Ansible role to install [The Lounge](https://thelounge.github.io/), a self-hosted web IRC
 client.
 
 What this role does:
 
-- Installs [Supervisor](http://supervisord.org/) to run Shout in the background
+- Installs [Supervisor](http://supervisord.org/) to run The Lounge in the background
 - Installs [NodeSource Node.js 0.12](https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories)
-- Installs [Shout 0.51.2](https://github.com/erming/shout/blob/master/CHANGELOG.md)
-- Creates a system user to own the Shout process
-- Configures Shout [as a private server](http://shout-irc.com/docs/server/configuration.html#public) to enable user login
+- Installs [The Lounge 1.0.2](https://github.com/thelounge/lounge/blob/master/CHANGELOG.md)
+- Creates a system user to own the `lounge` process
+- Configures The Lounge [as a private server](https://theloungegithub.io/docs/server/configuration.html#public) to enable user login
 - Configures users as defined in your playbook variables, each with logging support
-- Starts Shout server as a [Supervisor](http://supervisord.org/) program
+- Starts The Lounge server as a [Supervisor](http://supervisord.org/) program
 
 Note that this playbook will also install
 [esprima](https://www.npmjs.com/package/esprima) and
@@ -29,12 +29,12 @@ It was written for Debian and Ubuntu distributions.
 
 ## Role variables
 
-### `shout_users`
+### `lounge_users`
 
-Lists all users allowed to access Shout using their credentials.
+Lists all users allowed to access The Lounge using their credentials.
 
 **Warning:** The playbook will fail if you do not specify at least one user,
-which is how Shout behaves itself.
+which is how The Lounge behaves itself.
 
 **Warning:** At the moment, user configuration files are only created if they do
 not exist, so changing passwords does not get reflected when provisioning.
@@ -42,7 +42,7 @@ not exist, so changing passwords does not get reflected when provisioning.
 #### Example
 
 ```yaml
-shout_users:
+lounge_users:
   - user: WiZ
     hashed_password: $2a$04$g8xA7UYVGXwtMp1fJIyINerlXjzieA/lva9O3rUWV2KEpLTjhdVD6 # "password"
   - ...
@@ -61,15 +61,15 @@ npm install bcryptjs
 [not be saved in your `bash` history](http://askubuntu.com/a/15929/166928),
 if configured accordingly).
 
-### `shout_theme`
+### `lounge_theme`
 
-Sets the visual style to apply to Shout, among those offered with the software.
+Sets the visual style to apply to The Lounge, among those offered with the software.
 
 #### Example
 
 ```yaml
 # Options are: crypto, example (default), morning, zenburn
-shout_theme: example
+lounge_theme: example
 ```
 
 ## Example playbook
@@ -105,7 +105,7 @@ vagrant up # Unnecessary if the VM is already running
 vagrant provision
 ```
 
-You should then be able to access Shout at <http://localhost:9000/>, and connect
+You should then be able to access The Lounge at <http://localhost:9000/>, and connect
 with the following test credentials:
   - Username: **WiZ**
   - Password: **password**
@@ -124,7 +124,7 @@ vagrant destroy -f # Destroys the VM entirely
 ```
 
 This role is
-[backed by Travis CI](https://travis-ci.org/astorije/ansible-role-shout).
+[backed by Travis CI](https://travis-ci.org/astorije/ansible-lounge).
 It uses the same test playbook to ensure that, for every push:
 
 - Syntax is correct

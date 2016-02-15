@@ -3,7 +3,7 @@ module.exports = {
 	host: "0.0.0.0",
 	port: 9000,
 	bind: undefined,
-	theme: "themes/{{ shout_theme }}.css",
+	theme: "themes/{{ lounge_theme }}.css",
 	autoload: true,
 	prefetch: false,
 	displayNetwork: true,
@@ -17,10 +17,10 @@ module.exports = {
 		port: 6697,
 		password: "",
 		tls: true,
-		nick: "shout-user",
-		username: "shout-user",
-		realname: "Shout User",
-		join: "#foo, #shout-irc"
+		nick: "lounge-user",
+		username: "lounge-user",
+		realname: "The Lounge User",
+		join: "#thelounge"
 	},
 	transports: ["polling", "websocket"],
 	https: {

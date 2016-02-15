@@ -19,21 +19,21 @@
     state: present
   sudo: yes
 
-- name: Ensure Shout package is installed
+- name: Ensure thelounge package is installed
   npm:
-    name: shout
+    name: thelounge
     global: yes
     production: yes
-    version: 0.53.0
+    version: "1.0.2"
     state: present
   sudo: yes
   notify: Restart supervisord program
 
-- name: Ensure user shout is present
+- name: Ensure user lounge is present
   user:
-    name: shout
+    name: lounge
     createhome: no
-    comment: Shout IRC
+    comment: The Lounge IRC
     system: yes
     state: present
   sudo: yes
@@ -49,49 +49,49 @@
     - jsonlint
   sudo: yes
 
-- name: Ensure Shout configuration directory is present
+- name: Ensure lounge configuration directory is present
   file:
-    path: /etc/shout
+    path: /etc/lounge
     state: directory
   sudo: yes
 
-- name: Ensure Shout is configured
+- name: Ensure The Lounge is configured
   template:
     src: config.js
-    dest: /etc/shout/config.js
+    dest: /etc/lounge/config.js
     validate: 'esvalidate %s'
   sudo: yes
   notify: Restart supervisord program
 
 - name: Ensure user configuration directory is present
   file:
-    path: /etc/shout/users
+    path: /etc/lounge/users
     state: directory
   sudo: yes
 
 - name: Ensure user configuration files are present
   template:
     src: user.json.j2
-    dest: /etc/shout/users/{{ item.user }}.json
-    owner: shout
-    group: shout
+    dest: /etc/lounge/users/{{ item.user }}.json
+    owner: lounge
+    group: lounge
     mode: "0440"
     force: no # Do not overwrite existing users to not erase networks
     validate: 'jsonlint -q %s'
-  with_items: shout_users
+  with_items: lounge_users
   sudo: yes
   notify: Restart supervisord program
 
 - name: Ensure program configuration for supervisord is installed
   copy:
-    src: shout_supervisord.conf
-    dest: /etc/supervisor/conf.d/shout.conf
+    src: lounge_supervisord.conf
+    dest: /etc/supervisor/conf.d/lounge.conf
   sudo: yes
   notify: Restart supervisord program
 
-- name: Ensure shout supervisord program is present
+- name: Ensure lounge supervisord program is present
   supervisorctl:
-    name: shout
+    name: lounge
     state: present
   sudo: yes
   notify: Restart supervisord program

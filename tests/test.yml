@@ -4,9 +4,9 @@
   gather_facts: no
 
   vars:
-    shout_users:
+    lounge_users:
       - user: WiZ
         hashed_password: $2a$04$g8xA7UYVGXwtMp1fJIyINerlXjzieA/lva9O3rUWV2KEpLTjhdVD6 # "password"
 
   roles:
-    - ansible-role-shout
+    - ansible-lounge

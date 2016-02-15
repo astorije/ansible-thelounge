@@ -9,8 +9,8 @@ if test $http_code != 200; then
   exit 1
 fi
 
-if [[ $response != *"About Shout"* ]]; then
-  printf "FAILURE: \"About Shout\" was not found in the HTTP response.\n"
+if [[ $response != *"About The Lounge"* ]]; then
+  printf "FAILURE: \"About The Lounge\" was not found in the HTTP response.\n"
   exit 1
 fi
 
