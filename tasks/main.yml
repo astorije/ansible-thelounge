@@ -24,7 +24,7 @@
     name: thelounge
     global: yes
     production: yes
-    version: "1.0.2"
+    version: "1.1.1"
     state: present
   sudo: yes
   notify: Restart supervisord program
