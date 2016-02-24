@@ -27,7 +27,9 @@
     version: "1.2.0"
     state: present
   sudo: yes
-  notify: Restart supervisord program
+  notify:
+    - Restart supervisord program
+    - Clean up npm temporary files
 
 - name: Ensure user lounge is present
   user:

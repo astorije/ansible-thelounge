@@ -5,3 +5,9 @@
     name: lounge
     state: restarted
   sudo: yes
+
+- name: Clean up npm temporary files
+  file:
+    name: /tmp/npm-*
+    state: absent
+  sudo: yes
