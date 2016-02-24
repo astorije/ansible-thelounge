@@ -61,6 +61,10 @@ npm install bcryptjs
 [not be saved in your `bash` history](http://askubuntu.com/a/15929/166928),
 if configured accordingly).
 
+### `lounge_port`
+
+Sets the port that `lounge` is listening on.
+
 ### `lounge_theme`
 
 Sets the visual style to apply to The Lounge, among those offered with the software.

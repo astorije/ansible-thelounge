@@ -1,4 +1,5 @@
 ---
 
+lounge_port: 9000
 lounge_theme: example
 lounge_users: []

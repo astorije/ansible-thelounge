@@ -1,7 +1,7 @@
 module.exports = {
 	public: false,
 	host: "0.0.0.0",
-	port: 9000,
+	port: {{ lounge_port }},
 	bind: undefined,
 	theme: "themes/{{ lounge_theme }}.css",
 	autoload: true,
