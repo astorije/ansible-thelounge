@@ -24,7 +24,7 @@
     name: thelounge
     global: yes
     production: yes
-    version: "1.2.0"
+    version: "1.2.1"
     state: present
   sudo: yes
   notify:
