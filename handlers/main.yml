@@ -7,7 +7,5 @@
   sudo: yes
 
 - name: Clean up npm temporary files
-  file:
-    name: /tmp/npm-*
-    state: absent
+  shell: rm -rf /tmp/npm-*
   sudo: yes
