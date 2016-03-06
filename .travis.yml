@@ -16,7 +16,7 @@ script:
   # Check the role syntax
   - ansible-playbook --inventory='localhost,' tests/test.yml --syntax-check
   # Check that the role can run with no errors/failures
-  - ansible-playbook --inventory='localhost,' tests/test.yml --connection=local
+  - ansible-playbook --inventory='localhost,' tests/test.yml --connection=local -vvvv
   # Check idempotence of the role by running it twice and making sure there are
   # no changed/failed tasks
   - >
