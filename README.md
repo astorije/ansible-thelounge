@@ -76,6 +76,17 @@ Sets the visual style to apply to The Lounge, among those offered with the softw
 lounge_theme: example
 ```
 
+### `lounge_version`
+
+Installs a specific version of The Lounge. It must be one of [the official
+releases](https://github.com/thelounge/lounge/releases).
+
+#### Example
+
+```yaml
+lounge_version: "2.0.0-pre.1"
+```
+
 ## Example playbook
 
 Go to the [test playbook](tests/test.yml) to see an example playbook using this

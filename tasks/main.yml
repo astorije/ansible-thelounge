@@ -24,7 +24,7 @@
     name: thelounge
     global: yes
     production: yes
-    version: "1.5.0"
+    version: "{{ lounge_version }}"
     state: present
   sudo: yes
   notify:
