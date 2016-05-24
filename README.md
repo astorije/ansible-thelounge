@@ -29,15 +29,37 @@ It was written for Debian and Ubuntu distributions.
 
 ## Role variables
 
+### `lounge_port`
+
+Sets the port that `lounge` is listening on.
+
+This variable is **optional** and defaults to `9000`.
+
+### `lounge_theme`
+
+Sets the visual style to apply to The Lounge, among those offered with the software.
+
+This variable is **optional** and defaults to `example`.
+
+#### Example
+
+```yaml
+# Options are: crypto, example (default), morning, zenburn
+lounge_theme: morning
+```
+
 ### `lounge_users`
 
 Lists all users allowed to access The Lounge using their credentials.
+
+This variable is **required**.
 
 **Warning:** The playbook will fail if you do not specify at least one user,
 which is how The Lounge behaves itself.
 
 **Warning:** At the moment, user configuration files are only created if they do
-not exist, so changing passwords does not get reflected when provisioning.
+not exist, so changing passwords does not get reflected when provisioning. Use
+the web interface (since v1.3.0) to change passwords.
 
 #### Example
 
@@ -61,25 +83,12 @@ npm install bcryptjs
 [not be saved in your `bash` history](http://askubuntu.com/a/15929/166928),
 if configured accordingly).
 
-### `lounge_port`
-
-Sets the port that `lounge` is listening on.
-
-### `lounge_theme`
-
-Sets the visual style to apply to The Lounge, among those offered with the software.
-
-#### Example
-
-```yaml
-# Options are: crypto, example (default), morning, zenburn
-lounge_theme: example
-```
-
 ### `lounge_version`
 
 Installs a specific version of The Lounge. It must be one of [the official
 releases](https://github.com/thelounge/lounge/releases).
+
+This variable is **optional** and defaults to the stable version detailed above.
 
 #### Example
 
