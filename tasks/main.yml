@@ -6,14 +6,13 @@
     state: present
   sudo: yes
 
-# See https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories
-- name: Ensure script to install NodeSource Node.js 0.12 repo has been executed
+- name: Ensure script to install NodeSource Node.js 4.x repo has been executed
   shell:
-    curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+    curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
     creates=/etc/apt/sources.list.d/nodesource.list
   sudo: yes
 
-- name: Ensure Node.js 0.12 is installed
+- name: Ensure Node.js 4.x (LTS) is installed
   apt:
     pkg: nodejs
     state: present
