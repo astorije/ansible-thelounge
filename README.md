@@ -101,6 +101,23 @@ lounge_version: "2.0.0-pre.1"
 Go to the [test playbook](tests/test.yml) to see an example playbook using this
 role.
 
+### `nodejs_version`
+
+Installs a specific version of Node.js among the supported ones.
+
+This variable is **optional** and defaults to `4.x`.
+
+#### Example
+
+```yaml
+nodejs_version: "6.x"
+```
+
+## Example playbook
+
+Go to the [test playbook](tests/test.yml) to see an example playbook using this
+role.
+
 ## Development environment
 
 Install [Vagrant](https://www.vagrantup.com/) and

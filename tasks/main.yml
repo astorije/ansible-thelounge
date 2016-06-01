@@ -6,17 +6,34 @@
     state: present
   sudo: yes
 
-# See https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories
-- name: Ensure script to install NodeSource Node.js 0.12 repo has been executed
-  shell:
-    curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
-    creates=/etc/apt/sources.list.d/nodesource.list
+- name: Ensure apt-transport-https is installed.
+  apt:
+    name: apt-transport-https
+    force: yes
+    state: present
   sudo: yes
 
-- name: Ensure Node.js 0.12 is installed
-  apt:
-    pkg: nodejs
+- name: Ensure Nodesource apt key is present
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
     state: present
+  sudo: yes
+
+- name: Ensure NodeSource repositories for Node.js are present
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+    - "deb https://deb.nodesource.com/node_{{ nodejs_version }} wheezy main"
+    - "deb-src https://deb.nodesource.com/node_{{ nodejs_version }} wheezy main"
+  sudo: yes
+
+# For example, 4.x becomes 4.* and matches 4.4.5-1nodesource1~wheezy1
+- name: Ensure Node.js and npm are installed.
+  apt:
+    name: nodejs={{ nodejs_version|regex_replace('x', '') }}*
+    state: present
+    update_cache: yes
   sudo: yes
 
 - name: Ensure thelounge package is installed
