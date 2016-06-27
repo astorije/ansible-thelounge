@@ -79,7 +79,7 @@
     mode: "0660"
     force: no # Do not overwrite existing users to not erase networks
     validate: 'jsonlint -q %s'
-  with_items: lounge_users
+  with_items: "{{ lounge_users }}"
   sudo: yes
   notify: Restart supervisord program
 
