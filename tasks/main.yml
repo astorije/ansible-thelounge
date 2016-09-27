@@ -58,7 +58,7 @@
 
 - name: Ensure The Lounge is configured
   template:
-    src: config.js
+    src: config.js.j2
     dest: /etc/lounge/config.js
     validate: 'esvalidate %s'
   sudo: yes
