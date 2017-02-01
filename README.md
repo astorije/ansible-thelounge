@@ -10,7 +10,7 @@ What this role does:
 
 - Installs [Supervisor](http://supervisord.org/) to run The Lounge in the background
 - Installs [NodeSource's Node.js 4.x LTS](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
-- Installs [The Lounge v2.1.0](https://github.com/thelounge/lounge/blob/master/CHANGELOG.md)
+- Installs [The Lounge v2.2.0](https://github.com/thelounge/lounge/blob/master/CHANGELOG.md)
 - Creates a system user to own the `lounge` process
 - Configures The Lounge [as a private server](https://theloungegithub.io/docs/server/configuration.html#public) to enable user login
 - Configures users as defined in your playbook variables, each with logging support
