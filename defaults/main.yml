@@ -6,4 +6,4 @@ lounge_debug:
 lounge_port: 9000
 lounge_theme: example
 lounge_users: []
-lounge_version: "2.2.1"
+lounge_version: "2.2.2"
