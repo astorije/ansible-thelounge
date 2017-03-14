@@ -12,10 +12,10 @@
     creates=/etc/apt/sources.list.d/nodesource.list
   sudo: yes
 
-- name: Ensure Node.js 4.x (LTS) is installed
+- name: Ensure that the latest version of Node.js 4.x (LTS) is installed
   apt:
     pkg: nodejs
-    state: present
+    state: latest
   sudo: yes
 
 - name: Ensure thelounge package is installed
