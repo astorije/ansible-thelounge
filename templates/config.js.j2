@@ -372,13 +372,13 @@ module.exports = {
 		// @type     boolean
 		// @default  false
 		//
-		ircFramework: false,
+		ircFramework: {{ lounge_debug.irc_framework | to_json }},
 
 		// Enables logging raw IRC messages into each server window.
 		//
 		// @type     boolean
 		// @default  false
 		//
-		raw: false,
+		raw: {{ lounge_debug.raw | to_json }},
 	},
 };

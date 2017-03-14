@@ -29,6 +29,20 @@ It was written for Debian and Ubuntu distributions.
 
 ## Role variables
 
+### `lounge_debug`
+
+Sets debug mode for available keys.
+
+This variable is **optional** and all its keys default to `false`.
+
+#### Example
+
+```yaml
+lounge_debug:
+  irc_framework: true
+  raw: true
+```
+
 ### `lounge_port`
 
 Sets the port that `lounge` is listening on.

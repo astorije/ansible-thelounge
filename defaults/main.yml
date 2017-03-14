@@ -1,5 +1,8 @@
 ---
 
+lounge_debug:
+  irc_framework: false
+  raw: false
 lounge_port: 9000
 lounge_theme: example
 lounge_users: []
