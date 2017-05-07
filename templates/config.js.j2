@@ -64,7 +64,7 @@ module.exports = {
 	// @type     boolean
 	// @default  false
 	//
-	prefetch: false,
+	prefetch: {{ lounge_prefetch | to_json }},
 
 	//
 	// Prefetch URLs Image Preview size limit

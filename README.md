@@ -49,6 +49,12 @@ Sets the port that `lounge` is listening on.
 
 This variable is **optional** and defaults to `9000`.
 
+### `lounge_prefetch`
+
+Enables or disables link and image prefetching for clients of this instance.
+
+This variable is **optional** and defaults to `false`.
+
 ### `lounge_theme`
 
 Sets the visual style to apply to The Lounge, among those offered with the software.
