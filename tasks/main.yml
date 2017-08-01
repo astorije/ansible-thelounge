@@ -74,6 +74,9 @@
 - name: Ensure preview storage directory is present
   file:
     path: /etc/lounge/storage
+    owner: lounge
+    group: lounge
+    mode: "0770"
     state: directory
   sudo: yes
   notify: Restart supervisord program
