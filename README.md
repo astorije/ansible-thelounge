@@ -21,7 +21,7 @@ Note that this playbook will also install
 [jsonlint](https://www.npmjs.com/package/jsonlint) npm packages to check syntax
 of configuration files.
 
-## Requirements
+## Requirements
 
 This role should be compatible with Ansible 1.2 or higher.
 
@@ -68,7 +68,7 @@ This variable is **optional** and defaults to `example`.
 lounge_theme: morning
 ```
 
-### `lounge_users`
+### `lounge_users`
 
 Lists all users allowed to access The Lounge using their credentials.
 
