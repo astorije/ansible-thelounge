@@ -4,20 +4,20 @@
   apt:
     pkg: supervisor
     state: present
-  sudo: yes
+  become: yes
   when: lounge_init_system == "supervisord"
 
 - name: Ensure script to install NodeSource Node.js 4.x repo has been executed
   shell:
     curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
     creates=/etc/apt/sources.list.d/nodesource.list
-  sudo: yes
+  become: yes
 
 - name: Ensure that the latest version of Node.js 4.x (LTS) is installed
   apt:
     pkg: nodejs
     state: latest
-  sudo: yes
+  become: yes
 
 - name: Ensure thelounge package is installed
   npm:
@@ -26,7 +26,7 @@
     production: yes
     version: "{{ lounge_version }}"
     state: present
-  sudo: yes
+  become: yes
   notify:
     - Restart lounge
     - Clean up npm temporary files
@@ -38,7 +38,7 @@
     comment: The Lounge IRC
     system: yes
     state: present
-  sudo: yes
+  become: yes
 
 - name: Ensure JS and JSON syntax checking packages are installed
   npm:
@@ -49,27 +49,27 @@
   with_items:
     - esprima
     - jsonlint
-  sudo: yes
+  become: yes
 
 - name: Ensure lounge configuration directory is present
   file:
     path: /etc/lounge
     state: directory
-  sudo: yes
+  become: yes
 
 - name: Ensure The Lounge is configured
   template:
     src: config.js.j2
     dest: /etc/lounge/config.js
     validate: 'esvalidate %s'
-  sudo: yes
+  become: yes
   notify: Restart lounge
 
 - name: Ensure user configuration directory is present
   file:
     path: /etc/lounge/users
     state: directory
-  sudo: yes
+  become: yes
   notify: Restart lounge
 
 - name: Ensure preview storage directory is present
@@ -79,7 +79,7 @@
     group: lounge
     mode: "0770"
     state: directory
-  sudo: yes
+  become: yes
   notify: Restart lounge
 
 - name: Ensure user configuration files are present
@@ -92,14 +92,14 @@
     force: no # Do not overwrite existing users to not erase networks
     validate: 'jsonlint -q %s'
   with_items: "{{ lounge_users }}"
-  sudo: yes
+  become: yes
   notify: Restart lounge
 
 - name: Ensure program configuration for supervisord is installed
   copy:
     src: lounge_supervisord.conf
     dest: /etc/supervisor/conf.d/lounge.conf
-  sudo: yes
+  become: yes
   notify: Restart lounge
   when: lounge_init_system == "supervisord"
 
@@ -107,7 +107,7 @@
   supervisorctl:
     name: lounge
     state: present
-  sudo: yes
+  become: yes
   notify: Restart lounge
   when: lounge_init_system == "supervisord"
 
@@ -115,7 +115,7 @@
   copy:
     dest: /etc/systemd/system/lounge.service
     src: lounge_systemd.service
-  sudo: yes
+  become: yes
   notify: Restart lounge
   when: lounge_init_system == "systemd"
 
@@ -124,5 +124,5 @@
     name: lounge
     state: started
     enabled: yes
-  sudo: yes
+  become: yes
   when: lounge_init_system == "systemd"

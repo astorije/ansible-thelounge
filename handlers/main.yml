@@ -4,7 +4,7 @@
   supervisorctl:
     name: lounge
     state: restarted
-  sudo: yes
+  become: yes
   listen: Restart lounge
   when: lounge_init_system == "supervisord"
 
@@ -13,10 +13,10 @@
     name: lounge
     state: restarted
     daemon_reload: yes
-  sudo: yes
+  become: yes
   listen: Restart lounge
   when: lounge_init_system == "systemd"
 
 - name: Clean up npm temporary files
   shell: rm -rf /tmp/npm-*
-  sudo: yes
+  become: yes
