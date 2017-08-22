@@ -23,7 +23,7 @@ of configuration files.
 
 ## Requirements
 
-This role should be compatible with Ansible 1.2 or higher.
+This role should be compatible with Ansible 2.2 or higher.
 
 It was written for Debian and Ubuntu distributions.
 
