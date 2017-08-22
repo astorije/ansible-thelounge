@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+
+[Service]
+WorkingDirectory=/etc/lounge
+ExecStart=/usr/bin/lounge start --home /etc/lounge/
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=lounge
+User=lounge
+Group=lounge
+
+[Install]
+WantedBy=multi-user.target

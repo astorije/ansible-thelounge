@@ -8,3 +8,4 @@ lounge_prefetch: false
 lounge_theme: example
 lounge_users: []
 lounge_version: "2.4.0"
+lounge_init_system: "supervisord"

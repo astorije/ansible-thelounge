@@ -5,6 +5,17 @@
     name: lounge
     state: restarted
   sudo: yes
+  listen: Restart lounge
+  when: lounge_init_system == "supervisord"
+
+- name: Restart systemd lounge service
+  service:
+    name: lounge
+    state: restarted
+    daemon_reload: yes
+  sudo: yes
+  listen: Restart lounge
+  when: lounge_init_system == "systemd"
 
 - name: Clean up npm temporary files
   shell: rm -rf /tmp/npm-*

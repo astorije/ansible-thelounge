@@ -5,6 +5,7 @@
     pkg: supervisor
     state: present
   sudo: yes
+  when: lounge_init_system == "supervisord"
 
 - name: Ensure script to install NodeSource Node.js 4.x repo has been executed
   shell:
@@ -27,7 +28,7 @@
     state: present
   sudo: yes
   notify:
-    - Restart supervisord program
+    - Restart lounge
     - Clean up npm temporary files
 
 - name: Ensure user lounge is present
@@ -62,14 +63,14 @@
     dest: /etc/lounge/config.js
     validate: 'esvalidate %s'
   sudo: yes
-  notify: Restart supervisord program
+  notify: Restart lounge
 
 - name: Ensure user configuration directory is present
   file:
     path: /etc/lounge/users
     state: directory
   sudo: yes
-  notify: Restart supervisord program
+  notify: Restart lounge
 
 - name: Ensure preview storage directory is present
   file:
@@ -79,7 +80,7 @@
     mode: "0770"
     state: directory
   sudo: yes
-  notify: Restart supervisord program
+  notify: Restart lounge
 
 - name: Ensure user configuration files are present
   template:
@@ -92,18 +93,36 @@
     validate: 'jsonlint -q %s'
   with_items: "{{ lounge_users }}"
   sudo: yes
-  notify: Restart supervisord program
+  notify: Restart lounge
 
 - name: Ensure program configuration for supervisord is installed
   copy:
     src: lounge_supervisord.conf
     dest: /etc/supervisor/conf.d/lounge.conf
   sudo: yes
-  notify: Restart supervisord program
+  notify: Restart lounge
+  when: lounge_init_system == "supervisord"
 
 - name: Ensure lounge supervisord program is present
   supervisorctl:
     name: lounge
     state: present
   sudo: yes
-  notify: Restart supervisord program
+  notify: Restart lounge
+  when: lounge_init_system == "supervisord"
+
+- name: Ensure systemd unit file is present
+  copy:
+    dest: /etc/systemd/system/lounge.service
+    src: lounge_systemd.service
+  sudo: yes
+  notify: Restart lounge
+  when: lounge_init_system == "systemd"
+
+- name: Ensure systemd service is started
+  service:
+    name: lounge
+    state: started
+    enabled: yes
+  sudo: yes
+  when: lounge_init_system == "systemd"

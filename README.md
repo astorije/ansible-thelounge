@@ -8,7 +8,7 @@ client.
 
 What this role does:
 
-- Installs [Supervisor](http://supervisord.org/) to run The Lounge in the background
+- Uses [Supervisor](http://supervisord.org/) or `systemd` to run The Lounge in the background (supervisord will be installed when selected)
 - Installs [NodeSource's Node.js 4.x LTS](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
 - Installs [The Lounge v2.4.0](https://github.com/thelounge/lounge/blob/master/CHANGELOG.md)
 - Creates a system user to own the `lounge` process
@@ -102,6 +102,12 @@ npm install bcryptjs
 (Note that the `bcrypt` command is prefixed with a whitespace to
 [not be saved in your `bash` history](http://askubuntu.com/a/15929/166928),
 if configured accordingly).
+
+### `lounge_init_system`
+
+Sets the software that is used to start `lounge`.
+
+This variable is **optional** can be set to `systemd` or `supervisord` (default).
 
 ### `lounge_version`
 
