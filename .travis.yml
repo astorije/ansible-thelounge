@@ -1,10 +1,10 @@
 language: python
 env:
   - ANSIBLE_VERSION="2.2.*"
-  - ANSIBLE_VERSION="2.1.*"
-  - ANSIBLE_VERSION="2.0.*"
-  - ANSIBLE_VERSION="1.9.*"
-  - ANSIBLE_VERSION="1.8.*"
+  # - ANSIBLE_VERSION="2.1.*"
+  # - ANSIBLE_VERSION="2.0.*"
+  # - ANSIBLE_VERSION="1.9.*"
+  # - ANSIBLE_VERSION="1.8.*"
   # - ANSIBLE_VERSION="1.7.*"
   # - ANSIBLE_VERSION="1.6.*"
   # - ANSIBLE_VERSION="1.5.*"
