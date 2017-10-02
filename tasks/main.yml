@@ -30,6 +30,12 @@
     - Restart supervisord program
     - Clean up npm temporary files
 
+- name: Ensure .lounge_home contains correct configuration location
+  file:
+    content: "/etc/lounge/"
+    dest: /usr/lib/node_modules/thelounge/.lounge_home
+  become: true
+
 - name: Ensure user lounge is present
   user:
     name: lounge
