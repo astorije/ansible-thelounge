@@ -4,8 +4,8 @@
   supervisorctl:
     name: lounge
     state: restarted
-  sudo: yes
+  become: yes
 
 - name: Clean up npm temporary files
   shell: rm -rf /tmp/npm-*
-  sudo: yes
+  become: yes
