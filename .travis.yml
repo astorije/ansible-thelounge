@@ -1,16 +1,11 @@
 language: python
 env:
-  - ANSIBLE_VERSION="2.2.*"
-  - ANSIBLE_VERSION="2.1.*"
-  - ANSIBLE_VERSION="2.0.*"
-  - ANSIBLE_VERSION="1.9.*"
-  - ANSIBLE_VERSION="1.8.*"
-  # - ANSIBLE_VERSION="1.7.*"
-  # - ANSIBLE_VERSION="1.6.*"
-  # - ANSIBLE_VERSION="1.5.*"
-  # - ANSIBLE_VERSION="1.4.*"
-  # - ANSIBLE_VERSION="1.3.*"
-  # - ANSIBLE_VERSION="1.2.*"
+  - ANSIBLE_VERSION="2.4.*" # First released on 2017-09-19
+  - ANSIBLE_VERSION="2.3.*" # First released on 2017-04-12
+  - ANSIBLE_VERSION="2.2.*" # First released on 2016-11-01
+  - ANSIBLE_VERSION="2.1.*" # First released on 2016-05-25
+  - ANSIBLE_VERSION="2.0.*" # First released on 2016-01-12
+  - ANSIBLE_VERSION="1.9.*" # First released on 2015-03-26
 before_install:
   - sudo apt-get update -qq
 install:
