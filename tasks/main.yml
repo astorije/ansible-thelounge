@@ -67,6 +67,8 @@
 - name: Ensure lounge configuration directory is present
   file:
     path: /etc/lounge
+    owner: lounge
+    group: lounge
     state: directory
   become: yes
 
@@ -74,6 +76,8 @@
   template:
     src: config.js.j2
     dest: /etc/lounge/config.js
+    owner: lounge
+    group: lounge
     validate: 'esvalidate %s'
   become: yes
   notify: Restart supervisord program
@@ -81,6 +85,8 @@
 - name: Ensure user configuration directory is present
   file:
     path: /etc/lounge/users
+    owner: lounge
+    group: lounge
     state: directory
   become: yes
   notify: Restart supervisord program
