@@ -5,6 +5,7 @@ lounge_debug:
   raw: false
 lounge_port: 9000
 lounge_prefetch: false
+lounge_reverse_proxy: false
 lounge_theme: example
 lounge_users: []
 lounge_version: "2.6.0"

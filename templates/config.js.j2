@@ -47,7 +47,7 @@ module.exports = {
 	// @type     boolean
 	// @default  false
 	//
-	reverseProxy: false,
+	reverseProxy: {{ lounge_reverse_proxy | to_json }},
 
 	//
 	// Set the default theme.

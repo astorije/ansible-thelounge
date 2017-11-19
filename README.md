@@ -55,6 +55,14 @@ Enables or disables link and image prefetching for clients of this instance.
 
 This variable defaults to `false` (change it to `true` for a better experience).
 
+### `lounge_reverse_proxy`
+
+Sets whether the server is behind a reverse proxy and should honor the
+`X-Forwarded-For` header or not.
+
+This variable defaults to `false` (change it to `true` if The Lounge is running
+Nginx, etc.).
+
 ### `lounge_theme`
 
 Sets the visual style to apply to The Lounge, among those offered with the
