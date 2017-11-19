@@ -31,9 +31,9 @@ It was written for Debian and Ubuntu distributions.
 
 ### `lounge_debug`
 
-Sets debug mode for available keys.
+Sets debug mode for available keys (`irc_framework` and `raw`).
 
-This variable is **optional** and all its keys default to `false`.
+All keys of this variable default to `false`.
 
 #### Example
 
@@ -47,17 +47,18 @@ lounge_debug:
 
 Sets the port that `lounge` is listening on.
 
-This variable is **optional** and defaults to `9000`.
+This variable defaults to `9000`.
 
 ### `lounge_prefetch`
 
 Enables or disables link and image prefetching for clients of this instance.
 
-This variable is **optional** and defaults to `false`.
+This variable defaults to `false` (change it to `true` for a better experience).
 
 ### `lounge_theme`
 
-Sets the visual style to apply to The Lounge, among those offered with the software.
+Sets the visual style to apply to The Lounge, among those offered with the
+software.
 
 This variable is **optional** and defaults to `example`.
 
@@ -72,10 +73,7 @@ lounge_theme: morning
 
 Lists all users allowed to access The Lounge using their credentials.
 
-This variable is **required**.
-
-**Warning:** The playbook will fail if you do not specify at least one user,
-which is how The Lounge behaves itself.
+By default, no users are created.
 
 **Warning:** At the moment, user configuration files are only created if they do
 not exist, so changing passwords does not get reflected when provisioning. Use
@@ -108,7 +106,8 @@ if configured accordingly).
 Installs a specific version of The Lounge. It must be one of [the official
 releases](https://github.com/thelounge/lounge/releases).
 
-This variable is **optional** and defaults to the stable version detailed above.
+This variable defaults to the stable version mentioned at the top of this
+document.
 
 #### Example
 
@@ -149,8 +148,8 @@ vagrant up # Unnecessary if the VM is already running
 vagrant provision
 ```
 
-You should then be able to access The Lounge at <http://localhost:9000/>, and connect
-with the following test credentials:
+You should then be able to access The Lounge at <http://localhost:9000/>, and
+connect with the following test credentials:
   - Username: **WiZ**
   - Password: **password**
 
