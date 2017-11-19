@@ -50,9 +50,25 @@
     - jsonlint
   become: yes
 
+- name: Retrieve the location of the global `node_modules` directory
+  shell: npm list --global --parseable thelounge
+  register: node_modules_path
+  changed_when: False
+  become: yes
+
+- name: Ensure .lounge_home points to the correct configuration directory
+  copy:
+    content: /etc/lounge/
+    # Something like: /usr/lib/node_modules/thelounge/.lounge_home
+    dest: "{{ node_modules_path.stdout }}/.lounge_home"
+  become: yes
+  notify: Restart supervisord program
+
 - name: Ensure lounge configuration directory is present
   file:
     path: /etc/lounge
+    owner: lounge
+    group: lounge
     state: directory
   become: yes
 
@@ -60,6 +76,8 @@
   template:
     src: config.js.j2
     dest: /etc/lounge/config.js
+    owner: lounge
+    group: lounge
     validate: 'esvalidate %s'
   become: yes
   notify: Restart supervisord program
@@ -67,6 +85,8 @@
 - name: Ensure user configuration directory is present
   file:
     path: /etc/lounge/users
+    owner: lounge
+    group: lounge
     state: directory
   become: yes
   notify: Restart supervisord program
