@@ -68,7 +68,7 @@ Nginx, etc.).
 Sets the visual style to apply to The Lounge, among those offered with the
 software.
 
-This variable is **optional** and defaults to `example`.
+This variable defaults to `example`.
 
 #### Example
 
