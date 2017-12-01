@@ -51,7 +51,7 @@
   become: yes
 
 - name: Retrieve the location of the global `node_modules` directory
-  shell: npm list --global --parseable thelounge
+  shell: npm list --global --parseable thelounge@{{ lounge_version }}
   register: node_modules_path
   changed_when: False
   become: yes
