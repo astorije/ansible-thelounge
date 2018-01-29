@@ -10,7 +10,7 @@ What this role does:
 
 - Installs [Supervisor](http://supervisord.org/) to run The Lounge in the background
 - Installs [NodeSource's Node.js 4.x LTS](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
-- Installs [The Lounge v2.6.0](https://github.com/thelounge/lounge/blob/master/CHANGELOG.md)
+- Installs [The Lounge v2.7.0](https://github.com/thelounge/lounge/blob/master/CHANGELOG.md)
 - Creates a system user to own the `lounge` process
 - Configures The Lounge [as a private server](https://theloungegithub.io/docs/server/configuration.html#public) to enable user login
 - Configures users as defined in your playbook variables, each with logging support
@@ -85,7 +85,8 @@ By default, no users are created.
 
 **Warning:** At the moment, user configuration files are only created if they do
 not exist, so changing passwords does not get reflected when provisioning. Use
-the web interface (since v1.3.0) to change passwords.
+the web interface (since v1.3.0) or the `thelounge reset` command to change
+passwords.
 
 #### Example
 

@@ -56,11 +56,20 @@
   changed_when: False
   become: yes
 
-- name: Ensure .lounge_home points to the correct configuration directory
+# TODO: Remove this extra step when The Lounge v3 gets released
+- name: Ensure .lounge_home is removed
+  file:
+    state: absent
+    # Something like: /usr/lib/node_modules/thelounge/.lounge_home
+    path: "{{ node_modules_path.stdout }}/.lounge_home"
+  become: yes
+  notify: Restart supervisord program
+
+- name: Ensure .thelounge_home points to the correct configuration directory
   copy:
     content: /etc/lounge/
-    # Something like: /usr/lib/node_modules/thelounge/.lounge_home
-    dest: "{{ node_modules_path.stdout }}/.lounge_home"
+    # Something like: /usr/lib/node_modules/thelounge/.thelounge_home
+    dest: "{{ node_modules_path.stdout }}/.thelounge_home"
   become: yes
   notify: Restart supervisord program
 
