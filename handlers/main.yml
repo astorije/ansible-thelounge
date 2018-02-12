@@ -6,6 +6,16 @@
     state: restarted
   become: yes
 
+- name: List all npm temporary files
+  find:
+    paths: /tmp/
+    patterns: "npm-*"
+  register: npm_temporary_files
+
 - name: Clean up npm temporary files
-  shell: rm -rf /tmp/npm-*
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items:
+    - "{{ npm_temporary_files.files }}"
   become: yes

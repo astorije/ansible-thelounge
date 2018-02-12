@@ -28,6 +28,7 @@
   become: yes
   notify:
     - Restart supervisord program
+    - List all npm temporary files
     - Clean up npm temporary files
 
 - name: Ensure user lounge is present
