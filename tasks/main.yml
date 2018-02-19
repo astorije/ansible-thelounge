@@ -47,7 +47,7 @@
     state: present
   with_items:
     - esprima
-    - jsonlint
+    # - jsonlint
   become: yes
 
 - name: Retrieve the location of the global `node_modules` directory
@@ -118,7 +118,7 @@
     group: lounge
     mode: "0660"
     force: no # Do not overwrite existing users to not erase networks
-    validate: 'jsonlint -q %s'
+    # validate: 'jsonlint -q %s'
   with_items: "{{ lounge_users }}"
   become: yes
   notify: Restart supervisord program
