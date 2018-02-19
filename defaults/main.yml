@@ -8,4 +8,4 @@ lounge_prefetch: false
 lounge_reverse_proxy: false
 lounge_theme: example
 lounge_users: []
-lounge_version: "2.7.0"
+lounge_version: "2.7.1"
