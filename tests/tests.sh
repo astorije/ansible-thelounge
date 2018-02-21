@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+set -e
 
 # See http://stackoverflow.com/a/21189044/1935861
 parse_yaml () {
@@ -22,16 +24,15 @@ url="http://localhost:9000/"
 http_code=`curl -sw "%{http_code}\\n" -o /dev/null ${url}`
 response=`curl -s $url`
 
-# Extract lounge_version from the defaults
-eval $(parse_yaml defaults/main.yml | grep 'lounge_version')
+# TODO: Verify version of The Lounge in CLI stdout
 
 if test $http_code != 200; then
   printf "FAILURE: HTTP code should be 200, but was ${http_code} instead.\n"
   exit 1
 fi
 
-if [[ $response != *"The Lounge is in version <strong>$lounge_version</strong>"* ]]; then
-  printf "FAILURE: \"The Lounge is in version <strong>$lounge_version</strong>\" was not found in the HTTP response.\n"
+if [[ $response != *"<title>The Lounge</title>"* ]]; then
+  printf "FAILURE: \"<title>The Lounge</title>\" was not found in the HTTP response.\n"
   exit 1
 fi
 
