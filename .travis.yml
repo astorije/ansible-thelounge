@@ -6,8 +6,6 @@ env:
   - ANSIBLE_VERSION="2.1.*" # First released on 2016-05-25
   - ANSIBLE_VERSION="2.0.*" # First released on 2016-01-12
   - ANSIBLE_VERSION="1.9.*" # First released on 2015-03-26
-before_install:
-  - sudo apt-get update -qq
 install:
   - pip install ansible==$ANSIBLE_VERSION
 script:
