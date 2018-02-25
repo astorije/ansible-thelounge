@@ -22,7 +22,6 @@
   npm:
     name: thelounge
     global: yes
-    production: yes
     version: "{{ lounge_version }}"
     state: present
   become: yes
@@ -43,7 +42,6 @@
   npm:
     name: "{{ item }}"
     global: yes
-    production: yes
     state: present
   with_items:
     - esprima
