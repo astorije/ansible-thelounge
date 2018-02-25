@@ -2,7 +2,7 @@
 
 - name: Restart supervisord program
   supervisorctl:
-    name: lounge
+    name: thelounge
     state: restarted
   become: yes
 

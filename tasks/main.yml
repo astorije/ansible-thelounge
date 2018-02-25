@@ -114,14 +114,14 @@
 
 - name: Ensure program configuration for supervisord is installed
   copy:
-    src: lounge_supervisord.conf
-    dest: /etc/supervisor/conf.d/lounge.conf
+    src: thelounge_supervisord.conf
+    dest: /etc/supervisor/conf.d/thelounge.conf
   become: yes
   notify: Restart supervisord program
 
-- name: Ensure lounge supervisord program is present
+- name: Ensure thelounge supervisord program is present
   supervisorctl:
-    name: lounge
+    name: thelounge
     state: present
   become: yes
   notify: Restart supervisord program

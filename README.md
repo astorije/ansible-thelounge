@@ -11,7 +11,7 @@ What this role does:
 - Installs [Supervisor](http://supervisord.org/) to run The Lounge in the background
 - Installs [NodeSource's Node.js 8.x LTS](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
 - Installs [The Lounge v3.0.0](https://github.com/thelounge/lounge/blob/master/CHANGELOG.md)
-- Creates a system user to own the `lounge` process
+- Creates a system user to own the `thelounge` process
 - Configures The Lounge [as a private server](https://theloungegithub.io/docs/server/configuration.html#public) to enable user login
 - Configures users as defined in your playbook variables, each with logging support
 - Starts The Lounge server as a [Supervisor](http://supervisord.org/) program
@@ -48,7 +48,7 @@ thelounge_debug:
 
 ### `thelounge_port`
 
-Sets the port that `lounge` is listening on.
+Sets the port that `thelounge` is listening on.
 
 This variable defaults to `9000`.
 
