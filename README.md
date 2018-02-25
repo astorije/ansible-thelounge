@@ -21,6 +21,9 @@ Note that this playbook will also install
 [jsonlint](https://www.npmjs.com/package/jsonlint) npm packages to check syntax
 of configuration files.
 
+Configuration files for The Lounge and its users can be found at
+`/etc/thelounge/`.
+
 ## Requirements
 
 This role should be compatible with Ansible 1.9 or higher.

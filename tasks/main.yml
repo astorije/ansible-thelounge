@@ -56,15 +56,15 @@
 
 - name: Ensure .thelounge_home points to the correct configuration directory
   copy:
-    content: /etc/lounge/
+    content: /etc/thelounge/
     # Something like: /usr/lib/node_modules/thelounge/.thelounge_home
     dest: "{{ node_modules_path.stdout }}/.thelounge_home"
   become: yes
   notify: Restart supervisord program
 
-- name: Ensure lounge configuration directory is present
+- name: Ensure thelounge configuration directory is present
   file:
-    path: /etc/lounge
+    path: /etc/thelounge
     owner: thelounge
     group: thelounge
     state: directory
@@ -73,7 +73,7 @@
 - name: Ensure The Lounge is configured
   template:
     src: config.js.j2
-    dest: /etc/lounge/config.js
+    dest: /etc/thelounge/config.js
     owner: thelounge
     group: thelounge
     validate: 'esvalidate %s'
@@ -82,7 +82,7 @@
 
 - name: Ensure user configuration directory is present
   file:
-    path: /etc/lounge/users
+    path: /etc/thelounge/users
     owner: thelounge
     group: thelounge
     state: directory
@@ -91,7 +91,7 @@
 
 - name: Ensure preview storage directory is present
   file:
-    path: /etc/lounge/storage
+    path: /etc/thelounge/storage
     owner: thelounge
     group: thelounge
     mode: "0770"
@@ -102,7 +102,7 @@
 - name: Ensure user configuration files are present
   template:
     src: user.json.j2
-    dest: /etc/lounge/users/{{ item.user }}.json
+    dest: /etc/thelounge/users/{{ item.user }}.json
     owner: thelounge
     group: thelounge
     mode: "0660"
