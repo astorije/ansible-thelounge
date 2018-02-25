@@ -29,11 +29,11 @@
     - Restart supervisord program
     - Clean up npm temporary files
 
-- name: Ensure user lounge is present
+- name: Ensure user thelounge is present
   user:
-    name: lounge
+    name: thelounge
     createhome: no
-    comment: The Lounge IRC
+    comment: The Lounge (IRC client)
     system: yes
     state: present
   become: yes
@@ -74,8 +74,8 @@
 - name: Ensure lounge configuration directory is present
   file:
     path: /etc/lounge
-    owner: lounge
-    group: lounge
+    owner: thelounge
+    group: thelounge
     state: directory
   become: yes
 
@@ -83,8 +83,8 @@
   template:
     src: config.js.j2
     dest: /etc/lounge/config.js
-    owner: lounge
-    group: lounge
+    owner: thelounge
+    group: thelounge
     validate: 'esvalidate %s'
   become: yes
   notify: Restart supervisord program
@@ -92,8 +92,8 @@
 - name: Ensure user configuration directory is present
   file:
     path: /etc/lounge/users
-    owner: lounge
-    group: lounge
+    owner: thelounge
+    group: thelounge
     state: directory
   become: yes
   notify: Restart supervisord program
@@ -101,8 +101,8 @@
 - name: Ensure preview storage directory is present
   file:
     path: /etc/lounge/storage
-    owner: lounge
-    group: lounge
+    owner: thelounge
+    group: thelounge
     mode: "0770"
     state: directory
   become: yes
@@ -112,8 +112,8 @@
   template:
     src: user.json.j2
     dest: /etc/lounge/users/{{ item.user }}.json
-    owner: lounge
-    group: lounge
+    owner: thelounge
+    group: thelounge
     mode: "0660"
     force: no # Do not overwrite existing users to not erase networks
     validate: 'jsonlint -q %s'
