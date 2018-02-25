@@ -29,7 +29,7 @@ It was written for Debian and Ubuntu distributions.
 
 ## Role variables
 
-### `lounge_debug`
+### `thelounge_debug`
 
 Sets debug mode for available keys (`irc_framework` and `raw`).
 
@@ -38,24 +38,24 @@ All keys of this variable default to `false`.
 #### Example
 
 ```yaml
-lounge_debug:
+thelounge_debug:
   irc_framework: true
   raw: true
 ```
 
-### `lounge_port`
+### `thelounge_port`
 
 Sets the port that `lounge` is listening on.
 
 This variable defaults to `9000`.
 
-### `lounge_prefetch`
+### `thelounge_prefetch`
 
 Enables or disables link and image prefetching for clients of this instance.
 
 This variable defaults to `false` (change it to `true` for a better experience).
 
-### `lounge_reverse_proxy`
+### `thelounge_reverse_proxy`
 
 Sets whether the server is behind a reverse proxy and should honor the
 `X-Forwarded-For` header or not.
@@ -63,7 +63,7 @@ Sets whether the server is behind a reverse proxy and should honor the
 This variable defaults to `false` (change it to `true` if The Lounge is running
 Nginx, etc.).
 
-### `lounge_theme`
+### `thelounge_theme`
 
 Sets the visual style to apply to The Lounge, among those offered with the
 software.
@@ -74,10 +74,10 @@ This variable defaults to `example`.
 
 ```yaml
 # Options are: crypto, example (default), morning, zenburn
-lounge_theme: morning
+thelounge_theme: morning
 ```
 
-### `lounge_users`
+### `thelounge_users`
 
 Lists all users allowed to access The Lounge using their credentials.
 
@@ -91,7 +91,7 @@ passwords.
 #### Example
 
 ```yaml
-lounge_users:
+thelounge_users:
   - user: WiZ
     hashed_password: $2a$04$g8xA7UYVGXwtMp1fJIyINerlXjzieA/lva9O3rUWV2KEpLTjhdVD6 # "password"
   - ...
@@ -110,7 +110,7 @@ npm install bcryptjs
 [not be saved in your `bash` history](http://askubuntu.com/a/15929/166928),
 if configured accordingly).
 
-### `lounge_version`
+### `thelounge_version`
 
 Installs a specific version of The Lounge. It must be one of [the official
 releases](https://github.com/thelounge/lounge/releases).
@@ -121,7 +121,7 @@ document.
 #### Example
 
 ```yaml
-lounge_version: "3.0.0-pre.1"
+thelounge_version: "3.0.0-pre.1"
 ```
 
 ## Example playbook

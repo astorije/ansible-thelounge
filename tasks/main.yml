@@ -22,7 +22,7 @@
   npm:
     name: thelounge
     global: yes
-    version: "{{ lounge_version }}"
+    version: "{{ thelounge_version }}"
     state: present
   become: yes
   notify:
@@ -49,7 +49,7 @@
   become: yes
 
 - name: Retrieve the location of the global `node_modules` directory
-  shell: npm list --global --parseable thelounge@{{ lounge_version }}
+  shell: npm list --global --parseable thelounge@{{ thelounge_version }}
   register: node_modules_path
   changed_when: False
   become: yes
@@ -117,7 +117,7 @@
     mode: "0660"
     force: no # Do not overwrite existing users to not erase networks
     validate: 'jsonlint -q %s'
-  with_items: "{{ lounge_users }}"
+  with_items: "{{ thelounge_users }}"
   become: yes
   notify: Restart supervisord program
 

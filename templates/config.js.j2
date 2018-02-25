@@ -29,7 +29,7 @@ module.exports = {
 	// @type     int
 	// @default  9000
 	//
-	port: {{ lounge_port }},
+	port: {{ thelounge_port }},
 
 	//
 	// Set the local IP to bind to for outgoing connections. Leave to undefined
@@ -47,7 +47,7 @@ module.exports = {
 	// @type     boolean
 	// @default  false
 	//
-	reverseProxy: {{ lounge_reverse_proxy | to_json }},
+	reverseProxy: {{ thelounge_reverse_proxy | to_json }},
 
 	//
 	// Set the default theme.
@@ -56,7 +56,7 @@ module.exports = {
 	// @type     string
 	// @default  "example"
 	//
-	theme: "{{ lounge_theme }}",
+	theme: "{{ thelounge_theme }}",
 
 	//
 	// Prefetch URLs
@@ -67,7 +67,7 @@ module.exports = {
 	// @type     boolean
 	// @default  false
 	//
-	prefetch: {{ lounge_prefetch | to_json }},
+	prefetch: {{ thelounge_prefetch | to_json }},
 
 	//
 	// Store and proxy prefetched images and thumbnails.
@@ -498,13 +498,13 @@ module.exports = {
 		// @type     boolean
 		// @default  false
 		//
-		ircFramework: {{ lounge_debug.irc_framework | to_json }},
+		ircFramework: {{ thelounge_debug.irc_framework | to_json }},
 
 		// Enables logging raw IRC messages into each server window.
 		//
 		// @type     boolean
 		// @default  false
 		//
-		raw: {{ lounge_debug.raw | to_json }},
+		raw: {{ thelounge_debug.raw | to_json }},
 	},
 };

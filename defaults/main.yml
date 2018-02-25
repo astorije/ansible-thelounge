@@ -1,11 +1,11 @@
 ---
 
-lounge_debug:
+thelounge_debug:
   irc_framework: false
   raw: false
-lounge_port: 9000
-lounge_prefetch: false
-lounge_reverse_proxy: false
-lounge_theme: example
-lounge_users: []
-lounge_version: "3.0.0-pre.1" # TODO: Don't merge with pre-release version
+thelounge_port: 9000
+thelounge_prefetch: false
+thelounge_reverse_proxy: false
+thelounge_theme: example
+thelounge_users: []
+thelounge_version: "3.0.0-pre.1" # TODO: Don't merge with pre-release version
