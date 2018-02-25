@@ -6,13 +6,13 @@
     state: present
   become: yes
 
-- name: Ensure script to install NodeSource Node.js 4.x repo has been executed
+- name: Ensure script to install NodeSource Node.js 8.x repo has been executed
   shell:
-    curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
+    curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
     creates=/etc/apt/sources.list.d/nodesource.list
   become: yes
 
-- name: Ensure that the latest version of Node.js 4.x (LTS) is installed
+- name: Ensure that the latest version of Node.js 8.x (LTS) is installed
   apt:
     pkg: nodejs
     state: latest
