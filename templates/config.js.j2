@@ -237,17 +237,17 @@ module.exports = {
 		// Nick
 		//
 		// @type     string
-		// @default  "lounge-user"
+		// @default  "thelounge-user"
 		//
-		nick: "lounge-user",
+		nick: "thelounge-user",
 
 		//
 		// Username
 		//
 		// @type     string
-		// @default  "lounge-user"
+		// @default  "thelounge-user"
 		//
-		username: "lounge-user",
+		username: "thelounge-user",
 
 		//
 		// Real Name
@@ -384,7 +384,7 @@ module.exports = {
 	//     also given in the config, to filter for instance only for nodes of type
 	//     inetOrgPerson, or whatever LDAP search allows.
 	//
-	// Alternatively, you can specify the `bindDN` parameter. This will make the lounge
+	// Alternatively, you can specify the `bindDN` parameter. This will make The Lounge
 	// ignore searchDN options and assume that the user DN is always:
 	//     <bindDN>,<primaryKey>=<username>
 	// where <username> is the user name provided in the log in request, and <bindDN>
@@ -436,8 +436,8 @@ module.exports = {
 		primaryKey: "uid",
 
 		//
-		// LDAP search dn settings. This defines the procedure by which the
-		// lounge first look for user DN before authenticating her.
+		// LDAP search dn settings. This defines the procedure by which The
+		// Lounge first look for user DN before authenticating her.
 		// Ignored if baseDN is specified
 		//
 		// @type     object
@@ -455,7 +455,7 @@ module.exports = {
 			rootDN: "cn=thelounge,ou=system-users,dc=example,dc=com",
 
 			//
-			// Password of the lounge LDAP system user
+			// Password of the LDAP system user for The Lounge
 			//
 			// @type     string
 			//
