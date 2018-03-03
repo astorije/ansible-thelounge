@@ -3,7 +3,7 @@
 
 # Ansible role for The Lounge
 
-Ansible role to install [The Lounge](https://thelounge.github.io/), a self-hosted web IRC
+Ansible role to install [The Lounge](https://thelounge.chat/), a self-hosted web IRC
 client.
 
 What this role does:
@@ -12,7 +12,7 @@ What this role does:
 - Installs [NodeSource's Node.js 8.x LTS](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
 - Installs [The Lounge v3.0.0](https://github.com/thelounge/thelounge/blob/master/CHANGELOG.md)
 - Creates a system user to own the `thelounge` process
-- Configures The Lounge [as a private server](https://theloungegithub.io/docs/server/configuration.html#public) to enable user login
+- Configures The Lounge [as a private server](https://thelounge.chat/docs/server/configuration.html#public) to enable user login
 - Configures users as defined in your playbook variables, each with logging support
 - Starts The Lounge server as a [Supervisor](http://supervisord.org/) program
 
