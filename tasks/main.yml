@@ -67,6 +67,48 @@
   become: yes
   notify: Restart supervisord program
 
+# TODO: Remove in a few versions after v3
+- name: Get stat for /etc/lounge
+  stat: path=/etc/lounge
+  register: lounge_dir
+
+# TODO: Remove in a few versions after v3
+- name: Get stat for /etc/thelounge
+  stat: path=/etc/thelounge
+  register: thelounge_dir
+
+# TODO: Remove in a few versions after v3
+- name: Ensure /etc/lounge is moved to /etc/thelounge
+  command: mv /etc/lounge /etc/thelounge
+  when: lounge_dir.stat.exists and not thelounge_dir.stat.exists
+  become: yes
+
+# TODO: Remove in a few versions after v3
+- name: Ensure old lounge folder ownership is given to thelounge user
+  file:
+    path: "/etc/thelounge/{{ item }}"
+    owner: thelounge
+    group: thelounge
+    recurse: yes
+    state: directory
+  when: lounge_dir.stat.exists and not thelounge_dir.stat.exists
+  become: yes
+  with_items:
+    - logs
+    - users
+  notify: Restart supervisord program
+
+# TODO: Remove in a few versions after v3
+- name: Ensure old lounge vapid.json ownership is given to thelounge user
+  file:
+    path: /etc/thelounge/vapid.json
+    owner: thelounge
+    group: thelounge
+    state: file
+  when: lounge_dir.stat.exists and not thelounge_dir.stat.exists
+  become: yes
+  notify: Restart supervisord program
+
 - name: Ensure thelounge configuration directory is present
   file:
     path: /etc/thelounge
