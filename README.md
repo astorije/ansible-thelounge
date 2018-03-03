@@ -26,7 +26,7 @@ Configuration files for The Lounge and its users can be found at
 
 ## Requirements
 
-This role should be compatible with Ansible 1.9 or higher.
+This role should be compatible with Ansible 2.0 or higher.
 
 It was written for Debian and Ubuntu distributions.
 
