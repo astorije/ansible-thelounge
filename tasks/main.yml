@@ -159,6 +159,22 @@
   become: yes
   notify: Restart supervisord program
 
+# Remove a few versions after v3
+- name: Ensure the old lounge supervisord program is stopped and absent
+  supervisorctl:
+    name: lounge
+    state: absent
+  become: yes
+  notify: Restart supervisord program
+
+# TODO: Remove in a few versions after v3
+- name: Ensure the old lounge supervisord configuration is absent
+  file:
+    path: /etc/supervisor/conf.d/lounge.conf
+    state: absent
+  become: yes
+  notify: Restart supervisord program
+
 - name: Ensure program configuration for supervisord is installed
   copy:
     src: thelounge_supervisord.conf
