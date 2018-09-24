@@ -13,6 +13,7 @@ What this role does:
 - Installs [The Lounge v3.0.0](https://github.com/thelounge/thelounge/blob/master/CHANGELOG.md)
 - Creates a system user to own the `thelounge` process
 - Configures The Lounge [as a private server](https://thelounge.chat/docs/server/configuration.html#public) to enable user login
+- Enables prefetch storage and file upload
 - Configures users as defined in your playbook variables, each with logging support
 - Starts The Lounge server as a [Supervisor](http://supervisord.org/) program
 
