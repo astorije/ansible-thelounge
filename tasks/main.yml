@@ -24,11 +24,7 @@
   become: yes
 
 - name: Ensure thelounge package is installed
-  npm:
-    name: thelounge
-    global: yes
-    version: "{{ thelounge_version }}"
-    state: present
+  command: "npm install --unsafe-perm --global thelounge@{{ thelounge_version }}"
   become: yes
   notify:
     - Restart supervisord program
