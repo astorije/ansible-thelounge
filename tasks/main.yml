@@ -4,6 +4,7 @@
   apt:
     pkg: supervisor
     state: present
+    update_cache: yes
   become: yes
 
 - name: Check whether the NodeSource script has already been executed
