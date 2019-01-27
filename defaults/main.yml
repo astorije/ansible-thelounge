@@ -8,4 +8,4 @@ thelounge_prefetch: false
 thelounge_reverse_proxy: false
 thelounge_theme: default
 thelounge_users: []
-thelounge_version: "3.0.0-rc.1" # TODO: Don't merge with pre-release version
+thelounge_version: "3.0.0"
