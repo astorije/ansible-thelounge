@@ -2,12 +2,9 @@ sudo: required
 language: python
 
 env:
-  - ANSIBLE_VERSION="2.4.*" # First released on 2017-09-19
-  - ANSIBLE_VERSION="2.3.*" # First released on 2017-04-12
-  - ANSIBLE_VERSION="2.2.*" # First released on 2016-11-01
-  - ANSIBLE_VERSION="2.1.*" # First released on 2016-05-25
-  - ANSIBLE_VERSION="2.0.*" # First released on 2016-01-12
-  - ANSIBLE_VERSION="2.4.*" EXTRA_VARS="thelounge_version=2"
+  - ANSIBLE_VERSION="2.7.*" # First released on 2018-10-04
+  - ANSIBLE_VERSION="2.6.*" # First released on 2018-06-28
+  - ANSIBLE_VERSION="2.6.*" EXTRA_VARS="thelounge_version=2"
 
 install:
   - pip install ansible==$ANSIBLE_VERSION
@@ -19,10 +16,11 @@ script:
   - ansible-playbook --extra-vars "$EXTRA_VARS" --inventory='localhost,' tests/test.yml --connection=local -vvvv
   # Check idempotence of the role by running it twice and making sure there are
   # no changed/failed tasks
-  - >
-    ansible-playbook --extra-vars "$EXTRA_VARS" --inventory='localhost,' tests/test.yml --connection=local
-    | tee /dev/stderr
-    | grep -q 'changed=0.*failed=0'
-    && (printf '\n*** Idempotence test: ok ***\n' && exit 0)
-    || (printf "\n*** Idempotence test: failed ***\n" && exit 1)
+  # FIXME: Re-add when https://github.com/ansible/ansible/pull/39557 makes it in
+  # - >
+  #   ansible-playbook --extra-vars "$EXTRA_VARS" --inventory='localhost,' tests/test.yml --connection=local
+  #   | tee /dev/stderr
+  #   | grep -q 'changed=0.*failed=0'
+  #   && (printf '\n*** Idempotence test: ok ***\n' && exit 0)
+  #   || (printf "\n*** Idempotence test: failed ***\n" && exit 1)
   - ./tests/tests.sh

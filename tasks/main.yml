@@ -1,12 +1,5 @@
 ---
 
-- name: Ensure Supervisor is installed
-  apt:
-    pkg: supervisor
-    state: present
-    update_cache: yes
-  become: yes
-
 - name: Check whether the NodeSource script has already been executed
   command: grep -Fq "node_8.x" /etc/apt/sources.list.d/nodesource.list
   register: correct_nodesource_version
@@ -24,12 +17,37 @@
     state: latest
   become: yes
 
+- name: Ensure the pubkey for Yarn is added to the keyring
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
+  become: yes
+
+- name: Ensure the apt repository for Yarn is present
+  apt_repository:
+    repo: deb https://dl.yarnpkg.com/debian/ stable main
+    state: present
+  become: yes
+
+- name: Ensure Yarn and Supervisor are installed
+  apt:
+    pkg: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - yarn
+    - supervisor
+  become: yes
+
 - name: Ensure thelounge package is installed
-  command: "npm install --unsafe-perm --global thelounge@{{ thelounge_version }}"
+  yarn:
+    name: thelounge
+    version: "{{ thelounge_version }}"
+    global: yes
+    state: latest # FIXME: Remove when https://github.com/ansible/ansible/pull/39557 makes it in
   become: yes
   notify:
     - Restart supervisord program
-    - Clean up npm temporary files
 
 - name: Ensure user thelounge is present
   user:
@@ -41,26 +59,27 @@
   become: yes
 
 - name: Ensure JS and JSON syntax checking packages are installed
-  npm:
+  yarn:
     name: "{{ item }}"
     global: yes
-    state: present
+    state: latest # FIXME: Remove when https://github.com/ansible/ansible/pull/39557 makes it in
   with_items:
     - esprima
     - jsonlint
   become: yes
+  changed_when: no # FIXME: Remove when https://github.com/ansible/ansible/pull/39557 makes it in
 
 - name: Retrieve the location of the global `node_modules` directory
-  shell: npm list --global --parseable thelounge@{{ thelounge_version }}
+  shell: yarn global dir
   register: node_modules_path
-  changed_when: False
+  changed_when: no
   become: yes
 
 - name: Ensure .thelounge_home points to the correct configuration directory
   copy:
     content: /etc/thelounge/
-    # Something like: /usr/lib/node_modules/thelounge/.thelounge_home
-    dest: "{{ node_modules_path.stdout }}/.thelounge_home"
+    # Something like: /usr/local/share/.config/yarn/global/node_modules/thelounge/.thelounge_home
+    dest: "{{ node_modules_path.stdout }}/node_modules/thelounge/.thelounge_home"
   become: yes
   notify: Restart supervisord program
 
