@@ -1,110 +1,162 @@
 ---
 
-- name: Ensure Supervisor is installed
-  apt:
-    pkg: supervisor
-    state: present
+- name: Check whether the NodeSource script has already been executed
+  command: grep -Fq "node_8.x" /etc/apt/sources.list.d/nodesource.list
+  register: correct_nodesource_version
+  failed_when: no
+  changed_when: no
+
+- name: Ensure script to install NodeSource Node.js 8.x repo has been executed
+  shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+  when: correct_nodesource_version.rc != 0
   become: yes
 
-- name: Ensure script to install NodeSource Node.js 4.x repo has been executed
-  shell:
-    curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
-    creates=/etc/apt/sources.list.d/nodesource.list
-  become: yes
-
-- name: Ensure that the latest version of Node.js 4.x (LTS) is installed
+- name: Ensure that the latest version of Node.js 8.x (LTS) is installed
   apt:
     pkg: nodejs
     state: latest
   become: yes
 
-- name: Ensure thelounge package is installed
-  npm:
-    name: thelounge
-    global: yes
-    production: yes
-    version: "{{ lounge_version }}"
+- name: Ensure the pubkey for Yarn is added to the keyring
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
     state: present
+  become: yes
+
+- name: Ensure the apt repository for Yarn is present
+  apt_repository:
+    repo: deb https://dl.yarnpkg.com/debian/ stable main
+    state: present
+  become: yes
+
+- name: Ensure Yarn and Supervisor are installed
+  apt:
+    pkg: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - yarn
+    - supervisor
+  become: yes
+
+- name: Ensure thelounge package is installed
+  yarn:
+    name: thelounge
+    version: "{{ thelounge_version }}"
+    global: yes
+    state: latest # FIXME: Remove when https://github.com/ansible/ansible/pull/39557 makes it in
   become: yes
   notify:
     - Restart supervisord program
-    - Clean up npm temporary files
 
-- name: Ensure user lounge is present
+- name: Ensure user thelounge is present
   user:
-    name: lounge
+    name: thelounge
     createhome: no
-    comment: The Lounge IRC
+    comment: The Lounge (IRC client)
     system: yes
     state: present
   become: yes
 
 - name: Ensure JS and JSON syntax checking packages are installed
-  npm:
+  yarn:
     name: "{{ item }}"
     global: yes
-    production: yes
-    state: present
+    state: latest # FIXME: Remove when https://github.com/ansible/ansible/pull/39557 makes it in
   with_items:
     - esprima
     - jsonlint
   become: yes
+  changed_when: no # FIXME: Remove when https://github.com/ansible/ansible/pull/39557 makes it in
 
 - name: Retrieve the location of the global `node_modules` directory
-  shell: npm list --global --parseable thelounge@{{ lounge_version }}
+  shell: yarn global dir
   register: node_modules_path
-  changed_when: False
+  changed_when: no
   become: yes
-
-# TODO: Remove this extra step when The Lounge v3 gets released
-- name: Ensure .lounge_home is removed
-  file:
-    state: absent
-    # Something like: /usr/lib/node_modules/thelounge/.lounge_home
-    path: "{{ node_modules_path.stdout }}/.lounge_home"
-  become: yes
-  notify: Restart supervisord program
 
 - name: Ensure .thelounge_home points to the correct configuration directory
   copy:
-    content: /etc/lounge/
-    # Something like: /usr/lib/node_modules/thelounge/.thelounge_home
-    dest: "{{ node_modules_path.stdout }}/.thelounge_home"
+    content: /etc/thelounge/
+    # Something like: /usr/local/share/.config/yarn/global/node_modules/thelounge/.thelounge_home
+    dest: "{{ node_modules_path.stdout }}/node_modules/thelounge/.thelounge_home"
   become: yes
   notify: Restart supervisord program
 
-- name: Ensure lounge configuration directory is present
+# TODO: Remove in a few versions after v3
+- name: Get stat for /etc/lounge
+  stat: path=/etc/lounge
+  register: lounge_dir
+
+# TODO: Remove in a few versions after v3
+- name: Get stat for /etc/thelounge
+  stat: path=/etc/thelounge
+  register: thelounge_dir
+
+# TODO: Remove in a few versions after v3
+- name: Ensure /etc/lounge is moved to /etc/thelounge
+  command: mv /etc/lounge /etc/thelounge
+  when: lounge_dir.stat.exists and not thelounge_dir.stat.exists
+  become: yes
+
+# TODO: Remove in a few versions after v3
+- name: Ensure old lounge folder ownership is given to thelounge user
   file:
-    path: /etc/lounge
-    owner: lounge
-    group: lounge
+    path: "/etc/thelounge/{{ item }}"
+    owner: thelounge
+    group: thelounge
+    recurse: yes
+    state: directory
+  when: lounge_dir.stat.exists and not thelounge_dir.stat.exists
+  become: yes
+  with_items:
+    - logs
+    - users
+  notify: Restart supervisord program
+
+# TODO: Remove in a few versions after v3
+- name: Ensure old lounge vapid.json ownership is given to thelounge user
+  file:
+    path: /etc/thelounge/vapid.json
+    owner: thelounge
+    group: thelounge
+    state: file
+  when: lounge_dir.stat.exists and not thelounge_dir.stat.exists
+  become: yes
+  notify: Restart supervisord program
+
+- name: Ensure thelounge configuration directory is present
+  file:
+    path: /etc/thelounge
+    owner: thelounge
+    group: thelounge
     state: directory
   become: yes
 
 - name: Ensure The Lounge is configured
   template:
     src: config.js.j2
-    dest: /etc/lounge/config.js
-    owner: lounge
-    group: lounge
+    dest: /etc/thelounge/config.js
+    owner: thelounge
+    group: thelounge
     validate: 'esvalidate %s'
   become: yes
   notify: Restart supervisord program
 
 - name: Ensure user configuration directory is present
   file:
-    path: /etc/lounge/users
-    owner: lounge
-    group: lounge
+    path: /etc/thelounge/users
+    owner: thelounge
+    group: thelounge
     state: directory
   become: yes
   notify: Restart supervisord program
 
 - name: Ensure preview storage directory is present
   file:
-    path: /etc/lounge/storage
-    owner: lounge
-    group: lounge
+    path: /etc/thelounge/storage
+    owner: thelounge
+    group: thelounge
     mode: "0770"
     state: directory
   become: yes
@@ -113,26 +165,42 @@
 - name: Ensure user configuration files are present
   template:
     src: user.json.j2
-    dest: /etc/lounge/users/{{ item.user }}.json
-    owner: lounge
-    group: lounge
+    dest: /etc/thelounge/users/{{ item.user }}.json
+    owner: thelounge
+    group: thelounge
     mode: "0660"
     force: no # Do not overwrite existing users to not erase networks
     validate: 'jsonlint -q %s'
-  with_items: "{{ lounge_users }}"
+  with_items: "{{ thelounge_users }}"
+  become: yes
+  notify: Restart supervisord program
+
+# Remove a few versions after v3
+- name: Ensure the old lounge supervisord program is stopped and absent
+  supervisorctl:
+    name: lounge
+    state: absent
+  become: yes
+  notify: Restart supervisord program
+
+# TODO: Remove in a few versions after v3
+- name: Ensure the old lounge supervisord configuration is absent
+  file:
+    path: /etc/supervisor/conf.d/lounge.conf
+    state: absent
   become: yes
   notify: Restart supervisord program
 
 - name: Ensure program configuration for supervisord is installed
   copy:
-    src: lounge_supervisord.conf
-    dest: /etc/supervisor/conf.d/lounge.conf
+    src: thelounge_supervisord.conf
+    dest: /etc/supervisor/conf.d/thelounge.conf
   become: yes
   notify: Restart supervisord program
 
-- name: Ensure lounge supervisord program is present
+- name: Ensure thelounge supervisord program is present
   supervisorctl:
-    name: lounge
+    name: thelounge
     state: present
   become: yes
   notify: Restart supervisord program

@@ -2,10 +2,6 @@
 
 - name: Restart supervisord program
   supervisorctl:
-    name: lounge
+    name: thelounge
     state: restarted
-  become: yes
-
-- name: Clean up npm temporary files
-  shell: rm -rf /tmp/npm-*
   become: yes

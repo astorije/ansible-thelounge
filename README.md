@@ -3,16 +3,18 @@
 
 # Ansible role for The Lounge
 
-Ansible role to install [The Lounge](https://thelounge.github.io/), a self-hosted web IRC
+Ansible role to install [The Lounge](https://thelounge.chat/), a self-hosted web IRC
 client.
 
 What this role does:
 
 - Installs [Supervisor](http://supervisord.org/) to run The Lounge in the background
-- Installs [NodeSource's Node.js 4.x LTS](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
-- Installs [The Lounge v2.7.1](https://github.com/thelounge/lounge/blob/master/CHANGELOG.md)
-- Creates a system user to own the `lounge` process
-- Configures The Lounge [as a private server](https://theloungegithub.io/docs/server/configuration.html#public) to enable user login
+- Installs [NodeSource's Node.js 8.x LTS](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
+- Installs [Yarn](https://yarnpkg.com/en/)
+- Installs [The Lounge v3.0.0](https://github.com/thelounge/thelounge/blob/master/CHANGELOG.md)
+- Creates a system user to own the `thelounge` process
+- Configures The Lounge [as a private server](https://thelounge.chat/docs/server/configuration.html#public) to enable user login
+- Enables prefetch storage and file upload
 - Configures users as defined in your playbook variables, each with logging support
 - Starts The Lounge server as a [Supervisor](http://supervisord.org/) program
 
@@ -21,15 +23,18 @@ Note that this playbook will also install
 [jsonlint](https://www.npmjs.com/package/jsonlint) npm packages to check syntax
 of configuration files.
 
+Configuration files for The Lounge and its users can be found at
+`/etc/thelounge/`.
+
 ## Requirements
 
-This role should be compatible with Ansible 1.9 or higher.
+This role should be compatible with Ansible 2.6 or higher.
 
 It was written for Debian and Ubuntu distributions.
 
 ## Role variables
 
-### `lounge_debug`
+### `thelounge_debug`
 
 Sets debug mode for available keys (`irc_framework` and `raw`).
 
@@ -38,24 +43,24 @@ All keys of this variable default to `false`.
 #### Example
 
 ```yaml
-lounge_debug:
+thelounge_debug:
   irc_framework: true
   raw: true
 ```
 
-### `lounge_port`
+### `thelounge_port`
 
-Sets the port that `lounge` is listening on.
+Sets the port that `thelounge` is listening on.
 
 This variable defaults to `9000`.
 
-### `lounge_prefetch`
+### `thelounge_prefetch`
 
 Enables or disables link and image prefetching for clients of this instance.
 
 This variable defaults to `false` (change it to `true` for a better experience).
 
-### `lounge_reverse_proxy`
+### `thelounge_reverse_proxy`
 
 Sets whether the server is behind a reverse proxy and should honor the
 `X-Forwarded-For` header or not.
@@ -63,7 +68,7 @@ Sets whether the server is behind a reverse proxy and should honor the
 This variable defaults to `false` (change it to `true` if The Lounge is running
 Nginx, etc.).
 
-### `lounge_theme`
+### `thelounge_theme`
 
 Sets the visual style to apply to The Lounge, among those offered with the
 software.
@@ -74,10 +79,10 @@ This variable defaults to `example`.
 
 ```yaml
 # Options are: crypto, example (default), morning, zenburn
-lounge_theme: morning
+thelounge_theme: morning
 ```
 
-### `lounge_users`
+### `thelounge_users`
 
 Lists all users allowed to access The Lounge using their credentials.
 
@@ -91,7 +96,7 @@ passwords.
 #### Example
 
 ```yaml
-lounge_users:
+thelounge_users:
   - user: WiZ
     hashed_password: $2a$04$g8xA7UYVGXwtMp1fJIyINerlXjzieA/lva9O3rUWV2KEpLTjhdVD6 # "password"
   - ...
@@ -102,7 +107,7 @@ generate a password using the [bcryptjs](https://www.npmjs.com/package/bcryptjs)
 npm package, run the following commands:
 
 ```bash
-npm install bcryptjs
+yarn add bcryptjs
  node node_modules/bcryptjs/bin/bcrypt "my password"
 ```
 
@@ -110,10 +115,10 @@ npm install bcryptjs
 [not be saved in your `bash` history](http://askubuntu.com/a/15929/166928),
 if configured accordingly).
 
-### `lounge_version`
+### `thelounge_version`
 
 Installs a specific version of The Lounge. It must be one of [the official
-releases](https://github.com/thelounge/lounge/releases).
+releases](https://github.com/thelounge/thelounge/releases).
 
 This variable defaults to the stable version mentioned at the top of this
 document.
@@ -121,7 +126,7 @@ document.
 #### Example
 
 ```yaml
-lounge_version: "2.0.0-pre.1"
+thelounge_version: "3.0.0-pre.1"
 ```
 
 ## Example playbook
