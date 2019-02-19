@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/astorije/ansible-lounge.svg?branch=master)](https://travis-ci.org/astorije/ansible-lounge)
+[![Build Status](https://travis-ci.org/astorije/ansible-thelounge.svg?branch=master)](https://travis-ci.org/astorije/ansible-thelounge)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 # Ansible role for The Lounge
