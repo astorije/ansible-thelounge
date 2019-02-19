@@ -11,7 +11,7 @@ What this role does:
 - Installs [Supervisor](http://supervisord.org/) to run The Lounge in the background
 - Installs [NodeSource's Node.js 8.x LTS](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
 - Installs [Yarn](https://yarnpkg.com/en/)
-- Installs [The Lounge v3.0.0](https://github.com/thelounge/thelounge/blob/master/CHANGELOG.md)
+- Installs [The Lounge v3.0.1](https://github.com/thelounge/thelounge/blob/master/CHANGELOG.md)
 - Creates a system user to own the `thelounge` process
 - Configures The Lounge [as a private server](https://thelounge.chat/docs/server/configuration.html#public) to enable user login
 - Enables prefetch storage and file upload
