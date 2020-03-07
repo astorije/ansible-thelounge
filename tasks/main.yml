@@ -1,17 +1,17 @@
 ---
 
 - name: Check whether the NodeSource script has already been executed
-  command: grep -Fq "node_8.x" /etc/apt/sources.list.d/nodesource.list
+  command: grep -Fq "node_13.x" /etc/apt/sources.list.d/nodesource.list
   register: correct_nodesource_version
   failed_when: no
   changed_when: no
 
-- name: Ensure script to install NodeSource Node.js 8.x repo has been executed
-  shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+- name: Ensure script to install NodeSource Node.js 13.x repo has been executed
+  shell: curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
   when: correct_nodesource_version.rc != 0
   become: yes
 
-- name: Ensure that the latest version of Node.js 8.x (LTS) is installed
+- name: Ensure that the latest version of Node.js 13.x (LTS) is installed
   apt:
     pkg: nodejs
     state: latest
@@ -31,12 +31,11 @@
 
 - name: Ensure Yarn and Supervisor are installed
   apt:
-    pkg: "{{ item }}"
+    pkg:
+      - yarn
+      - supervisor
     state: present
     update_cache: yes
-  with_items:
-    - yarn
-    - supervisor
   become: yes
 
 - name: Ensure thelounge package is installed

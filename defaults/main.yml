@@ -8,4 +8,4 @@ thelounge_prefetch: false
 thelounge_reverse_proxy: false
 thelounge_theme: default
 thelounge_users: []
-thelounge_version: "3.0.1"
+thelounge_version: "3.3.0"
